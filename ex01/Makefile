@@ -1,11 +1,13 @@
 NAME = phonebook
 
 SOURCES =	main.cpp \
+			phonebook.cpp \
+			contact.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
 CC	=	c++ 
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
