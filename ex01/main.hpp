@@ -6,7 +6,7 @@
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:08:45 by llaakson          #+#    #+#             */
-/*   Updated: 2025/03/18 18:10:40 by llaakson         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:29:58 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <cctype>
 #include <string>
 #include <iomanip>
+#include <cstdlib>
 
 #include "contact.hpp"
 #include "phonebook.hpp"
