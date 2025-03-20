@@ -14,10 +14,12 @@
 
 #include <iostream>
 
-Zombie::Zombie(void){}
+Zombie::Zombie(std::string name){
+	this->name = name;
+}
 
 Zombie::~Zombie(void){}
 
-void announce(void){
-		std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+void Zombie::announce(void){
+		std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

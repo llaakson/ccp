@@ -14,8 +14,13 @@
 
 int main()
 {
-	Zombie zombie;
-	std::string yolo;
-	zombie.newZombie(yolo);
+	Zombie zombie("Tupu");
+	zombie.announce();
+	
+	Zombie *ptr = newZombie("Hupu");
+	ptr->announce();
+	delete ptr;
+	
+	randomChump("Lupu");
 	return (0);
 }

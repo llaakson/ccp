@@ -13,7 +13,6 @@
 #include "Zombie.hpp"
 
 Zombie* newZombie( std::string name ){
-	(void)name;
-	Zombie zombie;
-	return (&zombie);
+	Zombie *newzombie = new Zombie(name);
+	return (newzombie);
 }
