@@ -6,11 +6,19 @@
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:35:23 by llaakson          #+#    #+#             */
-/*   Updated: 2025/03/19 17:10:20 by llaakson         ###   ########.fr       */
+/*   Updated: 2025/03/20 13:02:03 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.hpp"
+
+PhoneBook::PhoneBook() {
+	contact_num = 0;
+	current_contact = 0;
+}
+
+PhoneBook::~PhoneBook(){
+}
 
 void PhoneBook::print_contact(int i)
 {
@@ -18,6 +26,7 @@ void PhoneBook::print_contact(int i)
 	std::cout << "Last name: " << contacts[i].getLastname() << std::endl;
 	std::cout << "Nickname: " << contacts[i].getNickname() << std::endl;
 	std::cout << "Phone number: " << contacts[i].getNumber() << std::endl;
+	std::cout << "Darkest secret: " << contacts[i].getSecret() << std::endl;
 }
 
 std::string shrink_str(const std::string str){
@@ -59,7 +68,7 @@ int PhoneBook::printPerson() {
 		std::cout << "ctrl d found, exiting...\n";
 		return (1);
 	}
-	if (is_digits(input) && std::stoi(input) < this->contact_num)
+	if (is_digits(input) && input.size() == 1 && std::stoi(input) < this->contact_num)
 		print_contact(std::stoi(input));
 	else 
 		std::cout << "Index out of scope\n";
