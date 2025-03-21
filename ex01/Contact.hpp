@@ -6,14 +6,18 @@
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 11:04:24 by llaakson          #+#    #+#             */
-/*   Updated: 2025/03/18 17:16:09 by llaakson         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:43:33 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-#include "main.hpp"
+#include <iostream>
+#include <cctype>
+#include <string>
+#include <iomanip>
+#include <cstdlib>
 
 class Contact {
 	private:

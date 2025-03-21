@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.hpp                                           :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/18 11:08:45 by llaakson          #+#    #+#             */
-/*   Updated: 2025/03/19 11:29:58 by llaakson         ###   ########.fr       */
+/*   Created: 2025/03/21 15:36:41 by llaakson          #+#    #+#             */
+/*   Updated: 2025/03/21 23:03:18 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_HPP
-# define MAIN_HPP
-#include <iostream>
-#include <cctype>
+#ifndef HumanB_HPP
+#define HumanB_HPP
 #include <string>
-#include <iomanip>
-#include <cstdlib>
+#include "Weapon.hpp"
 
-#include "contact.hpp"
-#include "phonebook.hpp"
+class HumanB {
+	private:
+		Weapon weapon;
+		std::string name;
+	public:
+		void attack();
+		void	setWeapon(Weapon newweapon);
+		HumanB(std::string name);
+};
 
 #endif
-

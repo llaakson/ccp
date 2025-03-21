@@ -1,12 +1,11 @@
-NAME = account
+NAME = brain
 
-SOURCES =	tests.cpp \
-			Account.cpp \
+SOURCES =	main.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
 CC	=	c++ 
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra
 
 all: $(NAME)
 
