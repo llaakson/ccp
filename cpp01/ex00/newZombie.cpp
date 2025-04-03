@@ -11,8 +11,15 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <iostream>
 
 Zombie* newZombie( std::string name ){
+	try {
 	Zombie *newzombie = new Zombie(name);
 	return (newzombie);
+	}
+	catch(std::bad_alloc& e){
+		std::cerr << "Failed to allocate memmory for newZombie" << std::endl;
+		return (nullptr);
+	}
 }

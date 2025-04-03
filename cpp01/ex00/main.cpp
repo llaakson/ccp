@@ -18,6 +18,8 @@ int main()
 	zombie.announce();
 	
 	Zombie *ptr = newZombie("Hupu");
+	if (!ptr)
+		return (1);
 	ptr->announce();
 	delete ptr;
 	

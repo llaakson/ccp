@@ -15,7 +15,9 @@
 int main()
 {
 	int N = 42;
-	Zombie *ptr = zombieHorde(N,"BoB");
+	Zombie *ptr = zombieHorde(42,"BoB");
+	if (!ptr)
+		return (1);
 	for(int i = 0; i < N; i++)
 		ptr[i].announce();
 	delete[] ptr;

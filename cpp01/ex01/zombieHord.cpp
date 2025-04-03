@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHord.cpp                                     :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,15 +11,19 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <iostream>
 
-void Zombie::setName(std::string zombiename){
-	name = zombiename;
-}
 Zombie* zombieHorde( int N, std::string name ){
+	try{
 	Zombie *newzombie = new Zombie[N];
 	for(int i = 0; i < N; i++)
-		newzombie[i].setName(name);	
+		newzombie[i].setName(name + std::to_string(1+i));	
 	return (newzombie);
+	}
+	catch (std::bad_alloc& e){
+		std::cerr << "FAIL" << std::endl;
+		return (nullptr);
+	}
 }
 
 
