@@ -19,7 +19,7 @@ Zombie* newZombie( std::string name ){
 	return (newzombie);
 	}
 	catch(std::bad_alloc& e){
-		std::cerr << "Failed to allocate memmory for newZombie" << std::endl;
+		std::cerr << "Exception: " << e.what() << std::endl;
 		return (nullptr);
 	}
 }

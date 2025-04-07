@@ -14,15 +14,13 @@
 
 int main()
 {
-	Zombie zombie("Tupu");
-	zombie.announce();
+	randomChump("Tippa");
 	
-	Zombie *ptr = newZombie("Hupu");
+	Zombie *ptr = newZombie("Tappi");
 	if (!ptr)
 		return (1);
 	ptr->announce();
 	delete ptr;
-	
-	randomChump("Lupu");
+
 	return (0);
 }
