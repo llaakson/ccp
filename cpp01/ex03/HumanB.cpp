@@ -14,12 +14,16 @@
 #include <iostream>
 
 void HumanB::attack(){
-	std::cout << this->name << " attacks with their " << weapon.getType() << std::endl;
+	if (_weapon == nullptr)
+		std::cout << _name << " attacks with their fist" << std::endl;
+	else
+		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
 }
-void HumanB::setWeapon(Weapon newweapon){
-	this->weapon = newweapon;
+void HumanB::setWeapon(Weapon &newweapon){
+	_weapon = &newweapon;
 }
 
 HumanB::HumanB(std::string name){
-	this->name = name;
+	_name = name;
+	_weapon = nullptr;
 }

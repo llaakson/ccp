@@ -20,6 +20,5 @@ Zombie* newZombie( std::string name ){
 	}
 	catch(std::bad_alloc& e){
 		std::cerr << "Exception: " << e.what() << std::endl;
-		return (nullptr);
 	}
 }

@@ -17,7 +17,7 @@ int main(int argc, char **argv){
 	Harl harl;
 	
 	if (argc != 2){
-		std::cout << "Error! Give only one argument" << std::endl;
+		std::cerr << "Error! Give only one argument" << std::endl;
 		return 1;
 	}
 	std::string arg = argv[1];

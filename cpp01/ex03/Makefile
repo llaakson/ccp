@@ -8,7 +8,7 @@ SOURCES =	HumanA.cpp \
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
 CC	=	c++ 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++11
 
 all: $(NAME)
 

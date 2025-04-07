@@ -18,7 +18,11 @@ int main(){
 	harl.complain("DEBUG");
 	harl.complain("ERROR");
 	harl.complain("INFO");
-	harl.complain("ASDA");
 	harl.complain("WARNING");
+
+	harl.complain("ASDA");
+	harl.complain("");
+	harl.complain("    ");
+	harl.complain(" WARNING");
 return 0;
 }

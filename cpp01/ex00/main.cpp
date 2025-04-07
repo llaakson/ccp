@@ -17,8 +17,6 @@ int main()
 	randomChump("Tippa");
 	
 	Zombie *ptr = newZombie("Tappi");
-	if (!ptr)
-		return (1);
 	ptr->announce();
 	delete ptr;
 

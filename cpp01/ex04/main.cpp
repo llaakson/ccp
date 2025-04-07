@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv){
 	if (argc != 4){
-		std::cout << "Error! Incorrect argument count" << std::endl;
+		std::cerr << "Error! Incorrect argument count" << std::endl;
 		return 1;
 	}
 	std::string haystack = argv[1];
@@ -16,13 +16,16 @@ int main(int argc, char **argv){
         }
 	std::string line;
 	std::string needle = argv[2];
-        std::string newneedle = argv[3];
-	std::getline(file, line, '\0');
+    std::string newneedle = argv[3];
+	char c;
+	while (file.peek() != EOF && file >> std::noskipws >> c)
+		line += c;
+	std::cout << "'" << line << "'" << std::endl;
 	size_t found = 0;
 	while ((found = line.find(needle)) != std::string::npos) {
 		line.erase(found, needle.length());
 		line.insert(found, newneedle);
-		//found = 0;
+		found += newneedle.length();
 	}
 	std::ofstream outfile;
 	outfile.open(haystack + ".replace");
@@ -31,7 +34,7 @@ int main(int argc, char **argv){
 	    file.close();
             return 1;    
         }
-	outfile << line << std::endl;
+	outfile << line;
 	outfile.close();	
 	file.close();
 	return 0;
