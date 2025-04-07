@@ -13,17 +13,19 @@
 #include "Zombie.hpp"
 #include <iostream>
 
-Zombie* zombieHorde( int N, std::string name ){
-	try{
+Zombie* zombieHorde( int N, std::string name )
+{
+	try
+	{
 	Zombie *newzombie = new Zombie[N];
 	for(int i = 0; i < N; i++)
-		newzombie[i].setName(name + std::to_string(1+i));	
+		newzombie[i].setName(name + std::to_string(1+i));
+	
 	return (newzombie);
 	}
-	catch (std::bad_alloc& e){
-		std::cerr << "FAIL" << std::endl;
+	catch (std::bad_alloc& e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
 		return (nullptr);
 	}
 }
-
-

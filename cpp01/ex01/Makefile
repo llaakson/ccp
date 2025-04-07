@@ -7,7 +7,7 @@ SOURCES =	main.cpp \
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
 CC	=	c++ 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS =
 
 all: $(NAME)
 
