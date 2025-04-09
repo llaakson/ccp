@@ -20,7 +20,6 @@ int main(int argc, char **argv){
 	char c;
 	while (file.peek() != EOF && file >> std::noskipws >> c)
 		line += c;
-	std::cout << "'" << line << "'" << std::endl;
 	size_t found = 0;
 	while ((found = line.find(needle)) != std::string::npos) {
 		line.erase(found, needle.length());

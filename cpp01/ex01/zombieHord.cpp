@@ -27,4 +27,9 @@ Zombie* zombieHorde( int N, std::string name )
 		std::cerr << "Exception: " << e.what() << std::endl;
 		return (nullptr);
 	}
+	catch(...){
+		std::cout << "--exit test--" << std::endl;
+	}
+	std::cout << "--second test--" << std::endl;
+	return (0);
 }

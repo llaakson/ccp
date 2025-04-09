@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/20 14:41:17 by llaakson          #+#    #+#             */
-/*   Updated: 2025/03/21 13:22:02 by llaakson         ###   ########.fr       */
+/*   Created: 2025/04/09 14:20:20 by llaakson          #+#    #+#             */
+/*   Updated: 2025/04/09 15:21:58 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
-#include <iostream>
-int main()
-{
-	int N = -42;
-	Zombie *ptr = zombieHorde(N,"BoB");
-	for(int i = 0; i < N; i++)
-		ptr[i].announce();
-	delete[] ptr;
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-	return (0);
-}
+class Fixed {
+	private:
+		int fixed;
+		static const int fractional_bits = 8;
+	public:
+		int getRawBits( void );
+		void setRawBits( int const raw );
+		Fixed(const Fixed &previousFixed);
+		Fixed (int x);
+		Fixed();
+		~Fixed();
+};
+
+#endif
