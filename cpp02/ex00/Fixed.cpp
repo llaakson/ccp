@@ -19,14 +19,14 @@ Fixed::Fixed() : fixed(0) {
 
 Fixed::Fixed(const Fixed &previousFixed){
 	std::cout << "Copy constructor called" << std::endl;
-	fixed = previousFixed.fixed;
+	*this = previousFixed;
 }
 
 Fixed& Fixed::operator=(const Fixed& previousFixed) {
 	std::cout << "Copy assigment operator called" << std::endl;
 	if (this != &previousFixed)
 	{
-		fixed = getRawBits();
+		fixed = previousFixed.getRawBits();
 	}
 	return (*this);
 }
@@ -35,7 +35,7 @@ Fixed::~Fixed(){
 	std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits( void ){
+int Fixed::getRawBits( void ) const{
 	std::cout << "getRawBits member function called" << std::endl;
 	return (fixed);
 }
