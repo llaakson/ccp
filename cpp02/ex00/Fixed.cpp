@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
 
 Fixed::Fixed() : fixed(0) {
 	std::cout << "Default constructor called" << std::endl;

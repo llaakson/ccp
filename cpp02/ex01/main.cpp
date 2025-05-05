@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Fixed.hpp"
 
 int main( void ) {
@@ -27,5 +26,22 @@ int main( void ) {
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	std::cout << "------Bonus tests--------" << std::endl;
+	Fixed e;
+	Fixed const h( 2147483647 );
+	Fixed const j( 42.4222222222222222222f );
+	Fixed const k( h );
+	e = Fixed( -8388609 );
+	std::cout << "e is " << e << std::endl;
+	std::cout << "h is " << h << std::endl;
+	std::cout << "j is " << j << std::endl;
+	std::cout << "k is " << k << std::endl;
+	std::cout << "e is " << e.toInt() << " as integer" << std::endl;
+	std::cout << "h is " << h.toInt() << " as integer" << std::endl;
+	std::cout << "j is " << j.toInt() << " as integer" << std::endl;
+	std::cout << "k is " << k.toInt() << " as integer" << std::endl;
+
+
 	return 0;
 }

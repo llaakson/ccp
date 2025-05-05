@@ -14,37 +14,30 @@
 #include <iostream>
 #include <cmath>
 
+
 Fixed::Fixed() : fixed(0) {
-	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &previousFixed){
-	std::cout << "Copy constructor called" << std::endl;
 	*this = previousFixed;
 }
 
 Fixed& Fixed::operator=(const Fixed& previousFixed) {
-	std::cout << "Copy assigment operator called" << std::endl;
 	if (this != &previousFixed)
 	{
-		//(Fixed(previousFixed));
-		fixed = previousFixed.fixed;
-		//fixed = getRawBits();
+		fixed = previousFixed.getRawBits();
 	}
 	return (*this);
 }
 
 Fixed::~Fixed(){
-	std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits( void ){
-	std::cout << "getRawBits member function called" << std::endl;
+int Fixed::getRawBits( void ) const{
 	return (fixed);
 }
 
 void Fixed::setRawBits( int const raw ){
-	std::cout << "setRawBits member function called" << std::endl;
 	this->fixed = raw;
 }
 
@@ -57,7 +50,6 @@ int Fixed::toInt( void ) const{
 }
 
 Fixed::Fixed (const int n){
-	std::cout << "Int constructor called" << std::endl;
 	fixed = (int)roundf(n * (1 << fractional_bits));
 }
 
@@ -67,7 +59,6 @@ std::ostream &operator<<(std::ostream &stream, const Fixed& previousFixed) {
 }
 
 Fixed::Fixed (const float f){
-		std::cout << "Float constructor called" << std::endl;
 		fixed = (int)roundf(f * (1 << fractional_bits));
 }
 
@@ -92,12 +83,10 @@ Fixed Fixed::operator/(const Fixed &number) const{
 }
 
 Fixed& Fixed::operator++(){
-	std::cout << "operator++" << std::endl;
 	fixed += 1;
 	return (*this);
 }
 Fixed Fixed::operator ++(int){
-	std::cout << "operator++2" << std::endl;
 	Fixed temp(*this);
 	fixed += 1;
 	return (temp);
@@ -140,7 +129,6 @@ Fixed &Fixed::min(Fixed &number1, Fixed &number2){
 	else
 		return (number1);
 }
-
 
 bool Fixed::operator>(const Fixed &number) const{
 	return (this->fixed > number.fixed);

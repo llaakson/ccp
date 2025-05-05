@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 Fixed::Fixed() : fixed(0) {
 	std::cout << "Default constructor called" << std::endl;
@@ -20,16 +18,14 @@ Fixed::Fixed() : fixed(0) {
 
 Fixed::Fixed(const Fixed &previousFixed){
 	std::cout << "Copy constructor called" << std::endl;
-	fixed = previousFixed.fixed;
+	*this = previousFixed;
 }
 
 Fixed& Fixed::operator=(const Fixed& previousFixed) {
 	std::cout << "Copy assigment operator called" << std::endl;
 	if (this != &previousFixed)
 	{
-		//(Fixed(previousFixed));
-		fixed = previousFixed.fixed;
-		//fixed = getRawBits();
+		fixed = previousFixed.getRawBits();
 	}
 	return (*this);
 }
@@ -38,7 +34,7 @@ Fixed::~Fixed(){
 	std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits( void ){
+int Fixed::getRawBits( void ) const{
 	std::cout << "getRawBits member function called" << std::endl;
 	return (fixed);
 }
@@ -58,7 +54,17 @@ int Fixed::toInt( void ) const{
 
 Fixed::Fixed (const int n){
 	std::cout << "Int constructor called" << std::endl;
-	fixed = (int)roundf(n * (1 << fractional_bits));
+	if (n > FT_MAX_INT){
+		std::cout << "Float bigger than FT_MAX_INT" << std::endl;
+		fixed = FT_MAX_INT << fractional_bits;
+	}
+	else if (n < FT_MIN_INT){
+		std::cout << "Float smaller than FT_MIN_INT" << std::endl;
+		fixed = FT_MIN_INT * (1 << fractional_bits);
+	}
+	else
+		fixed = n << fractional_bits;
+
 }
 
 std::ostream &operator<<(std::ostream &stream, const Fixed& previousFixed) {
@@ -68,5 +74,14 @@ std::ostream &operator<<(std::ostream &stream, const Fixed& previousFixed) {
 
 Fixed::Fixed (const float f){
 		std::cout << "Float constructor called" << std::endl;
-		fixed = (int)roundf(f * (1 << fractional_bits));
+		if (f > FT_MAX_INT){
+			std::cout << "Float bigger than FT_MAX_INT" << std::endl;
+			fixed = (int)roundf(FT_MAX_INT * (1 << fractional_bits));
+		}
+		else if (f < FT_MIN_INT){
+			std::cout << "Float smaller than FT_MIN_INT" << std::endl;
+			fixed = (int)roundf(FT_MIN_INT * (1 << fractional_bits));
+		}
+		else
+			fixed = (int)roundf(f * (1 << fractional_bits));
 }
