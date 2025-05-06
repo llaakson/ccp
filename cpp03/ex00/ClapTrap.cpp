@@ -19,6 +19,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &rhs){
 	this->_hitpoints = rhs._hitpoints;
 	this->_energy = rhs._energy;
 	this->_damage = rhs._damage;
+	this->_maxhitpoints = rhs._maxhitpoints;
 	return *this;
 }
 
@@ -31,18 +32,26 @@ void ClapTrap::attack(const std::string& target){
 		std::cout << _name << " is out of energy and can't attack" << std::endl;
 		return ;
 	}
+	else if (_hitpoints <= 0){
+		std::cout << _name << " is destroyed and can't attack" << std::endl;
+		return ;
+	}
 	else
-		std::cout << _name << " deals " << _damage << " damage to" << target << std::endl;
+		std::cout << _name << " deals " << _damage << " damage to " << target << std::endl;
 	_energy--;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
-	std::cout << _name << " takes " << amount <<" of damage" << std::endl;
-	_hitpoints -= amount;
-	if (_hitpoints <= 0)
-		_hitpoints = 0;
-	if (_hitpoints == 0)
+	if (_hitpoints == 0){
+		std::cout << _name << " is already destroyed" << std::endl;
 		return ;
+	}
+	std::cout << _name << " takes " << amount <<" of damage" << std::endl;
+	if (amount >= _hitpoints){
+		_hitpoints = 0;
+		return ;
+	}
+	_hitpoints -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount){
@@ -50,8 +59,16 @@ void ClapTrap::beRepaired(unsigned int amount){
 		std::cout << _name << " has no energy to repair" << std::endl;
 	else {
 	std::cout << _name << " repairs iself " << amount << " hitpoints" << std::endl;
-	std::cout << _energy << std::endl;
+	if ((amount + _hitpoints) >= _maxhitpoints){
+		_hitpoints = _maxhitpoints;
+		_energy--;
+		return ;
+	}
 	_hitpoints += amount; 
 	_energy--;
 	}
+}
+
+int ClapTrap::getHitpoints(){
+	return (_hitpoints);
 }
