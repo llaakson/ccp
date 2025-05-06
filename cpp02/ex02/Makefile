@@ -1,4 +1,4 @@
-NAME = fixed
+NAME = a
 
 SOURCES =	main.cpp \
 			Fixed.cpp \

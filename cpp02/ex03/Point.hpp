@@ -28,5 +28,4 @@ class Point {
 		int toY(void) const;		
 };
 
-std::ostream& operator<<(std::ostream &outstream, const Point &pt);
 #endif

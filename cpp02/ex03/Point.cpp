@@ -18,12 +18,11 @@ Point::Point(const float x1, const float y1) : x(Fixed(x1)),	y(Fixed(y1)){}
 
 Point::~Point(){}
 
-Point::Point(const Point &previousPoint){
-	*this = previousPoint;
-}
+Point::Point(const Point &previousPoint) : x(previousPoint.x), y(previousPoint.y){}
 
-Point& Point::operator=(const Point& previousPoint){
-	(void)previousPoint;	
+Point& Point::operator=(const Point& right){
+	if(this==&right)
+		return (*this);
 	return(*this);
 }
 
@@ -33,10 +32,4 @@ int Point::toX( void ) const{
 
 int Point::toY( void ) const{
 	return(y.toInt());
-}
-
-std::ostream& operator<<(std::ostream &outstream, const Point &pt)
-{
-	outstream << pt.toX() << "," << pt.toY();
-	return outstream;
 }

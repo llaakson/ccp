@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Fixed.hpp"
 
 int main( void ) {
@@ -24,17 +23,43 @@ int main( void ) {
 	std::cout << b << std::endl;
 	std::cout << Fixed::max( a, b ) << std::endl;
 
-	std::cout << "Arithmetic operators" << std::endl;
-	
-	
-	std::cout << "Comparison operators" << std::endl;
-	
+	std::cout << "ARITHMEIC OPERATORS" << std::endl;
+	Fixed c( 42.42f );
+	std::cout << c << std::endl;
+	std::cout << b << std::endl;
+	std::cout << "Multiplication" << std::endl;
+	std::cout << c*c << std::endl;
+	std::cout << c*b << std::endl;
+	std::cout << "Division" << std::endl;
+	std::cout << c/c << std::endl;
+	std::cout << c/b << std::endl;
+	std::cout << "Addition" << std::endl;
+	std::cout << c+c << std::endl;
+	std::cout << c+b << std::endl;
+	std::cout << "subtraction" << std::endl;
+	std::cout << c-c << std::endl;
+	std::cout << c-b << std::endl;
+	std::cout << b-c << std::endl;
 
-	std::cout << "MIN & MAX const" << std::endl;
+	std::cout << "COPARISON OPERATORS" << std::endl;
+	std::cout << c << std::endl;
+	std::cout << b << std::endl;
+	std::cout << (c<b) << std::endl;
+	std::cout << (c>b) << std::endl;
+	std::cout << (c<=b) << std::endl;
+	std::cout << (c>=b) << std::endl;
+	std::cout << (c==b) << std::endl;
+	std::cout << (c!=b) << std::endl;
+	std::cout << (c==c) << std::endl;
 	
-
-	std::cout << "MIN & MAX non const" << std::endl;
-	
+	std::cout << "MIN & MAX" << std::endl;
+	Fixed const d(99);
+	std::cout << Fixed::max( c, b ) << std::endl;
+	std::cout << Fixed::max( c, c ) << std::endl;
+	std::cout << Fixed::min( c, b ) << std::endl;
+	std::cout << Fixed::min( c, c ) << std::endl;
+	std::cout << Fixed::min( b, d ) << std::endl;
+	std::cout << Fixed::min( a, c ) << std::endl;
 
 	return 0;
 }

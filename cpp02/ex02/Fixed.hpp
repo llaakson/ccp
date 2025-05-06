@@ -13,6 +13,9 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
 #include <iostream>
+#include <cmath>
+#define FT_MAX_INT 8388607 // 00000000011111111111111111111111 in 32 bit integer
+#define FT_MIN_INT -8388608
 
 class Fixed {
 	private:

@@ -1,8 +1,9 @@
-NAME = fixed
+NAME = a
 
 SOURCES =	main.cpp \
 			Fixed.cpp \
 			Point.cpp \
+			bsp.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

@@ -11,12 +11,8 @@
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
-
-Fixed::Fixed() : fixed(0) {
-}
+Fixed::Fixed() : fixed(0) {}
 
 Fixed::Fixed(const Fixed &previousFixed){
 	*this = previousFixed;
@@ -30,8 +26,7 @@ Fixed& Fixed::operator=(const Fixed& previousFixed) {
 	return (*this);
 }
 
-Fixed::~Fixed(){
-}
+Fixed::~Fixed(){}
 
 int Fixed::getRawBits( void ) const{
 	return (fixed);
@@ -50,7 +45,16 @@ int Fixed::toInt( void ) const{
 }
 
 Fixed::Fixed (const int n){
-	fixed = (int)roundf(n * (1 << fractional_bits));
+	if (n > FT_MAX_INT){
+		std::cout << "Float bigger than FT_MAX_INT" << std::endl;
+		fixed = FT_MAX_INT << fractional_bits;
+	}
+	else if (n < FT_MIN_INT){
+		std::cout << "Float smaller than FT_MIN_INT" << std::endl;
+		fixed = FT_MIN_INT * (1 << fractional_bits);
+	}
+	else
+		fixed = n << fractional_bits;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Fixed& previousFixed) {
@@ -59,9 +63,17 @@ std::ostream &operator<<(std::ostream &stream, const Fixed& previousFixed) {
 }
 
 Fixed::Fixed (const float f){
-		fixed = (int)roundf(f * (1 << fractional_bits));
+		if (f > FT_MAX_INT){
+			std::cout << "Float bigger than FT_MAX_INT" << std::endl;
+			fixed = (int)roundf(FT_MAX_INT * (1 << fractional_bits));
+		}
+		else if (f < FT_MIN_INT){
+			std::cout << "Float smaller than FT_MIN_INT" << std::endl;
+			fixed = (int)roundf(FT_MIN_INT * (1 << fractional_bits));
+		}
+		else
+			fixed = (int)roundf(f * (1 << fractional_bits));
 }
-
 Fixed Fixed::operator*(const Fixed &number) const{
 	float result = this->toFloat() * number.toFloat();
 	return (result);
@@ -86,11 +98,10 @@ Fixed& Fixed::operator++(){
 	fixed += 1;
 	return (*this);
 }
-Fixed Fixed::operator ++(int){
+Fixed Fixed::operator++(int){
 	Fixed temp(*this);
 	fixed += 1;
 	return (temp);
-
 }
 Fixed& Fixed::operator--(){
 	fixed -= 1;
