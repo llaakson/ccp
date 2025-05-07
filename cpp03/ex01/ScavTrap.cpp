@@ -18,9 +18,9 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
 	_maxhitpoints = 100;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy){
+ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy){
 	std::cout << "ScravTrap copy constructor called" << std::endl;
-	*this = copy;
+	//*this = copy; // remove this?..........................
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& rhs){
