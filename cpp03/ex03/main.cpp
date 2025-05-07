@@ -1,8 +1,8 @@
 
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main(){
-	FragTrap Trap1 = FragTrap("FragTrap1");
+	DiamondTrap Trap1 = DiamondTrap("DiamondTrap1");
 	Trap1.highFivesGuys();
 	Trap1.attack("Target1");
 	return (0);

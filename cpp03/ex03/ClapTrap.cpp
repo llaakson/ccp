@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 13:29:21 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/07 13:37:43 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/07 22:09:34 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/07 22:09:38 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name("ClapTrap1"), _hitpoints(10), _energy(10), _damage(0){
-	std::cout << _name << " Default constructor called." << std::endl;
+	std::cout << _name << " ClapTrap default constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitpoints(10), _energy(10), _damage(0){
-	std::cout << _name << " Name constructor called." << std::endl;
+	std::cout << _name << " ClapTrap name constructor called." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy){
@@ -36,7 +36,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &rhs){
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << _name << " ClapTrap deconstructor called." << std::endl;
+	std::cout << _name << " destroyed." << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target){

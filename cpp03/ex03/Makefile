@@ -1,8 +1,10 @@
-NAME = FragTrap
+NAME = DiamondTrap
 
 SOURCES =	main.cpp \
 			ClapTrap.cpp \
 			FragTrap.cpp \
+			ScavTrap.cpp \
+			DiamondTrap.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

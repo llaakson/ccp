@@ -14,7 +14,7 @@
 #include "ClapTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap("Nameless trap"){
-	std::cout << " ScravTrap default constructor called" << std::endl;
+	std::cout << "ScravTrap default constructor called" << std::endl;
 	_hitpoints = 100;
 	_energy = 50;
 	_damage = 20;
