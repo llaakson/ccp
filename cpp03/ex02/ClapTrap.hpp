@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 14:29:16 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 14:29:19 by llaakson         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CLAPTRAP_HPP
 #define CLAPTRAP_HPP
 #include <iostream>
@@ -14,12 +26,12 @@ class ClapTrap {
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &copy);
 		ClapTrap& operator=(const ClapTrap& rhs);
-		~ClapTrap();
-		void attack(const std::string& target);
+		virtual ~ClapTrap();
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		int getHitpoints();
+		void ClapTrapStatus();
 };
 
 #endif

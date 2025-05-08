@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 13:29:48 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/07 13:29:53 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 14:29:16 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 14:29:19 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class ClapTrap {
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
-		int getHitpoints();
+		void ClapTrapStatus();
 };
 
 #endif

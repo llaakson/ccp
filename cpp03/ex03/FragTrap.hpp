@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/08 16:10:50 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 16:10:54 by llaakson         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FRAGTRAP_HPP
 #define FRAGTRAP_HPP
 
@@ -9,9 +21,8 @@ class FragTrap : virtual public ClapTrap{
 		FragTrap(std::string name);
 		FragTrap(const FragTrap &copy);
 		FragTrap& operator=(const FragTrap& rhs); 
-		~FragTrap() override; 
+		~FragTrap() override;
 
-		void attack(const std::string& target) override;
 		void highFivesGuys(void);
 };
 

@@ -14,28 +14,27 @@
 #include "ClapTrap.hpp"
 
 FragTrap::FragTrap() : ClapTrap("Nameless trap"){
-	std::cout << " ScravTrap default constructor called" << std::endl;
+	std::cout << "FragTrap default constructor called. " << _name << std::endl;
 	_hitpoints = 100;
-	_energy = 50;
-	_damage = 20;
+	_energy = 100;
+	_damage = 30;
 	_maxhitpoints = 100; 
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name){
-	std::cout << "ScravTrap name constructor called" << std::endl;
-	_name = "GigaTrap";
+	std::cout << "FragTrap name constructor called. " << _name << std::endl;
 	_hitpoints = 100;
-	_energy = 50;
-	_damage = 20;
+	_energy = 100;
+	_damage = 30;
 	_maxhitpoints = 100;
 }
 
 FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy){
-	std::cout << "ScravTrap copy constructor called" << std::endl;
+	std::cout << "FragTrap copy constructor called. " << _name << std::endl;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& rhs){
-	std::cout << "ScravTrap copy assignment operator called" << std::endl;
+	std::cout << "FragTrap copy assignment operator called. " << _name << std::endl;
 	if (this != &rhs){
 		this->_name = rhs._name;
 		this->_hitpoints = rhs._hitpoints;
@@ -47,23 +46,9 @@ FragTrap& FragTrap::operator=(const FragTrap& rhs){
 } 
 
 FragTrap::~FragTrap(){
-	std::cout << _name << " ScravTrap destructor called" << std::endl;
-}
-
-void FragTrap::attack(const std::string& target){
-	if (_energy <= 0){
-		std::cout << _name << " is out of energy and can't attack" << std::endl;
-		return ;
-	}
-	else if (_hitpoints <= 0){
-		std::cout << _name << " is destroyed and can't attack" << std::endl;
-		return ;
-	}
-	else
-		std::cout << _name << " DEALS " << _damage << " damage to " << target << std::endl;
-	_energy--;
+	std::cout << "FragTrap destructor called. " << _name << std::endl;
 }
 
 void FragTrap::highFivesGuys(void){
-	std::cout << _name << " Positive high fives" << std::endl;
+	std::cout << _name << " Gives you positive high fives. The vibes are off the chart." << std::endl;
 }
