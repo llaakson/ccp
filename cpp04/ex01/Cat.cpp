@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 22:20:43 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/08 22:20:46 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 20:14:41 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 21:02:13 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Cat.hpp"
 
-WrongCat::WrongCat()
+Cat::Cat()
 {
-	std::cout << "WrongCat default constructor called." << std::endl;
+	std::cout << "Cat default constructor called." << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+Cat::Cat(const Cat &copy)
 {
-	std::cout << "WrongCat copy constructor called." << std::endl;
+	std::cout << "Cat copy constructor called." << std::endl;
 	*this = copy;
 }
 
-WrongCat& WrongCat::operator=(const WrongCat &rhs)
+Cat& Cat::operator=(const Cat &rhs)
 {
-	std::cout << "WrongCat copy assignment operator called." << std::endl;
+	std::cout << "Cat copy assignment operator called." << std::endl;
 	if (this != &rhs)
 	{
 		return *this;
@@ -33,8 +33,12 @@ WrongCat& WrongCat::operator=(const WrongCat &rhs)
 	return *this;
 }
 
-WrongCat::~WrongCat()
+Cat::~Cat()
 {
-	std::cout << "WrongCat default constructor called." << std::endl;
+	std::cout << "Cat default constructor called." << std::endl;
 }
 
+void Cat::makeSound()const
+{
+	std::cout << "MEOW" << std::endl;
+}

@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.cpp                                       :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 22:20:43 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/08 22:20:46 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 20:14:24 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 20:14:27 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "WrongCat.hpp"
+#include "Dog.hpp"
 
-WrongCat::WrongCat()
+Dog::Dog()
 {
-	std::cout << "WrongCat default constructor called." << std::endl;
+	std::cout << "Dog default constructor called." << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+Dog::Dog(const Dog &copy)
 {
-	std::cout << "WrongCat copy constructor called." << std::endl;
+	std::cout << "Dog copy constructor called." << std::endl;
 	*this = copy;
 }
 
-WrongCat& WrongCat::operator=(const WrongCat &rhs)
+Dog& Dog::operator=(const Dog &rhs)
 {
-	std::cout << "WrongCat copy assignment operator called." << std::endl;
+	std::cout << "Dog copy assignment operator called." << std::endl;
 	if (this != &rhs)
 	{
 		return *this;
@@ -33,8 +33,12 @@ WrongCat& WrongCat::operator=(const WrongCat &rhs)
 	return *this;
 }
 
-WrongCat::~WrongCat()
+Dog::~Dog()
 {
-	std::cout << "WrongCat default constructor called." << std::endl;
+	std::cout << "Dog default constructor called." << std::endl;
 }
 
+void Dog::makeSound()const
+{
+	std::cout << "BARK" << std::endl;
+}

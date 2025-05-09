@@ -1,11 +1,10 @@
-NAME = Animal
+NAME = Brain
 
 SOURCES =	main.cpp \
 			Animal.cpp \
 			Dog.cpp \
 			Cat.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp \
+			Brain.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
