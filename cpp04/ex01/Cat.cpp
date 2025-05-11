@@ -12,12 +12,14 @@
 
 #include "Cat.hpp"
 
-Cat::Cat()
+Cat::Cat() : Animal()
 {
 	std::cout << "Cat default constructor called." << std::endl;
+	brain = new Brain();
+	_type = "Cat";
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy) : Animal()
 {
 	std::cout << "Cat copy constructor called." << std::endl;
 	*this = copy;
@@ -36,9 +38,28 @@ Cat& Cat::operator=(const Cat &rhs)
 Cat::~Cat()
 {
 	std::cout << "Cat default constructor called." << std::endl;
+	delete brain;
 }
 
 void Cat::makeSound()const
 {
 	std::cout << "MEOW" << std::endl;
+}
+
+void Cat::think(int i)
+{
+	if( i >= 0 && i <= 100)
+	{	
+		std::cout << "Cat is thinking about: " << brain->getIdea(i) << std::endl;
+	}
+	else 
+		std::cout << "Brain can't handle idea: " << i << std::endl;
+}
+
+void Cat::thinkIdea(std::string one_idea, int i)
+{
+	if( i >= 0 && i <= 100)
+	{
+		brain->setIdea(one_idea,i);
+	}
 }

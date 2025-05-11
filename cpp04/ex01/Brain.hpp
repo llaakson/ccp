@@ -13,6 +13,7 @@
 #ifndef BRAIN_HPP
 #define BRAIN_HPP
 #include <iostream>
+#include <string>
 
 class Brain {
 	private:
@@ -21,7 +22,10 @@ class Brain {
 		Brain();
 		Brain(const Brain &copy);
 		Brain &operator=(const Brain &rhs);
-		~Brain();
+		virtual ~Brain();
+
+		std::string getIdea(int i);
+		void setIdea(std::string one_idea, int i);
 };
 
 #endif

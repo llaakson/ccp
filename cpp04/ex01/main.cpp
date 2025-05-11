@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
@@ -22,5 +21,29 @@ int main()
 	delete j;//should not create a leak
 	delete i;
 	//...
+	int size = 10;
+	Animal *k[size];
+	for (int i = 0; i < size; i++)
+	{
+		if (i % 2 == 0)
+			k[i] = new Dog();
+		else
+			k[i] = new Cat();
+	}
+	for (int i = 0; i < size; i++)
+		k[i]->makeSound();
+	for (int i = 0; i < size; i++)
+	{
+		delete k[i];
+	}
+	std::cout << "-----------More test-----------" << std::endl;
+	Cat Cat1;
+	Cat1.thinkIdea("Must drop stuff from the table", 1);
+	Cat1.think(1);
+	Dog Dog1;
+	Dog1.thinkIdea("Must roll in the mud", 1);
+	Dog1.think(1);
+	Dog1.think(2);
+	Dog1.think(101);
 	return 0;
 }

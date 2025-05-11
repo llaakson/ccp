@@ -14,8 +14,11 @@
 #define DOG_HH
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Dog : public Animal {
+	private:
+		Brain *brain;
     public:
 		Dog();
 		Dog(const Dog &copy);
@@ -23,6 +26,9 @@ class Dog : public Animal {
 		~Dog() override;
 
         void makeSound()const override;
+		void think(int i);
+		void thinkIdea(std::string one_idea, int i);
+
 };
 
 #endif

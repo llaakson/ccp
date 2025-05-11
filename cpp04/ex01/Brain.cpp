@@ -15,6 +15,10 @@
 Brain::Brain()
 {
 	std::cout << "Brain default constructor called." << std::endl;
+	for (int i = 0; i < 100; i++)
+	{
+		idea[i] = "idea" + std::to_string(1);
+	}
 }
 
 Brain::Brain(const Brain &copy)
@@ -38,3 +42,20 @@ Brain::~Brain()
 	std::cout << "Brain default constructor called." << std::endl;
 }
 
+std::string Brain::getIdea(int i)
+{
+	if( i >= 0 && i <= 100)
+	{
+		return(idea[i]);
+	}
+	else
+		return ("Brain too small");
+}
+
+void Brain::setIdea (std::string one_idea, int i)
+{
+	if( i >= 0 && i <= 100)
+	{
+		idea[i] = one_idea;
+	}
+}

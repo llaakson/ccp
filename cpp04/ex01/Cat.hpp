@@ -14,8 +14,11 @@
 #define CAT_HH
 #include <iostream>
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal{
+	private:
+		Brain *brain;
     public:
 		Cat();
 		Cat(const Cat &copy);
@@ -23,6 +26,8 @@ class Cat : public Animal{
 		~Cat() override;
 
         void makeSound()const override;
+		void think(int i);
+		void thinkIdea(std::string one_idea, int i);
 };
 
 #endif
