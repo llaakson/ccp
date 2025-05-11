@@ -1,12 +1,13 @@
 NAME = Brain
 
 SOURCES =	main.cpp \
-			Animal.cpp \
-			Dog.cpp \
-			Cat.cpp \
-			Brain.cpp \
-			WrongCat.cpp \
-			WrongAnimal.cpp \
+		AMateria.cpp \
+		Character.cpp \
+		Cure.cpp \
+		Ice.cpp \
+		ICharacter.cpp \
+		IMateriaSource.cpp \
+		MateriaSource.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

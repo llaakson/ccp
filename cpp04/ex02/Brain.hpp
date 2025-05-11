@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 20:14:58 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/08 20:52:22 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 22:13:38 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/09 23:10:24 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HH
-#define CAT_HH
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 #include <iostream>
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include <string>
 
-class Cat : public Animal{
+class Brain {
 	private:
-		Brain *_brain;
-    public:
-		Cat();
-		Cat(const Cat &copy);
-		Cat& operator=(const Cat &rhs);
-		~Cat() override;
+		std::string idea[100]; 
+	public:
+		Brain();
+		Brain(const Brain &copy);
+		Brain &operator=(const Brain &rhs);
+		virtual ~Brain();
 
-        void makeSound()const override;
-		void think(int i);
-		void thinkIdea(std::string one_idea, int i);
+		std::string getIdea(int i);
+		void setIdea(std::string one_idea, int i);
 };
 
 #endif
+

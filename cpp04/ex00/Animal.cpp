@@ -12,15 +12,20 @@
 
 #include "Animal.hpp"
 
-Animal::Animal()
+Animal::Animal(): _type("Animal")
 {
 	std::cout << "Animal default constructor called." << std::endl;
+}
+
+Animal::Animal(std::string type) : _type(type)
+{
+	std::cout << "Animal name constructor called." << std::endl;
 }
 
 Animal::Animal(const Animal &copy)
 {
 	std::cout << "Animal copy constructor called." << std::endl;
-	*this = copy;
+	_type = copy._type;
 }
 
 Animal& Animal::operator=(const Animal &rhs)
@@ -45,6 +50,6 @@ std::string Animal::getType(void)const
 
 void Animal::makeSound()const
 {
-	std::cout << "Default animal sound" << _type << std::endl;
+	std::cout << "Default animal sound " << _type << std::endl;
 }
 

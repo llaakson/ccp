@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 20:14:58 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/08 20:52:22 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 22:20:28 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/09 22:17:13 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HH
-#define CAT_HH
+#ifndef WRONGCAT_HH
+#define WRONGCAT_HH
 #include <iostream>
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public Animal{
+class WrongCat : public WrongAnimal{
 	private:
 		Brain *_brain;
     public:
-		Cat();
-		Cat(const Cat &copy);
-		Cat& operator=(const Cat &rhs);
-		~Cat() override;
+		WrongCat();
+		WrongCat(const WrongCat &copy);
+		WrongCat& operator=(const WrongCat &rhs);
+		~WrongCat() override;
 
-        void makeSound()const override;
 		void think(int i);
 		void thinkIdea(std::string one_idea, int i);
 };

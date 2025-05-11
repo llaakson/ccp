@@ -26,7 +26,10 @@ class Animal {
 		virtual ~Animal();
 
 		std::string getType()const;
-		virtual void makeSound()const;
+		virtual void makeSound()const = 0;
 };
+
+// Abstract base class, constains 1 pure virtual function ( can only be derrived from)
+// makeSound funtion must be override.
 
 #endif

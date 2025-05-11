@@ -52,5 +52,8 @@ int main()
 	Dog2.think(2);
 	Cat Cat2 = Cat1;
 	Cat2.think(1);
+
+	//Animal fail;
+
 	return 0;
 }

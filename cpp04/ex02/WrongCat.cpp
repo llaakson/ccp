@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llaakson <llaakson@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/08 20:14:24 by llaakson          #+#    #+#             */
-/*   Updated: 2025/05/08 20:14:27 by llaakson         ###   ########.fr       */
+/*   Created: 2025/05/08 22:20:43 by llaakson          #+#    #+#             */
+/*   Updated: 2025/05/08 22:20:46 by llaakson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dog.hpp"
+#include "WrongCat.hpp"
 
-Dog::Dog() : Animal()
+WrongCat::WrongCat() : WrongAnimal()
 {
-	std::cout << "Dog default constructor called." << std::endl;
+	std::cout << "WrongCat default constructor called." << std::endl;
 	_brain = new Brain();
-	_type = "Dog";
+	_type = "WrongCat";
 }
 
-Dog::Dog(const Dog &copy) : Animal(copy)
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
 {
-	std::cout << "Dog copy constructor called." << std::endl;
+	std::cout << "WrongCat copy constructor called." << std::endl;
+	_brain = new Brain(*copy._brain);
 }
 
-Dog& Dog::operator=(const Dog &rhs)
+WrongCat& WrongCat::operator=(const WrongCat &rhs)
 {
-	std::cout << "Dog copy assignment operator called." << std::endl;
+	std::cout << "WrongCat copy assignment operator called." << std::endl;
 	if (this != &rhs)
 	{
 		delete _brain;
@@ -36,28 +37,23 @@ Dog& Dog::operator=(const Dog &rhs)
 	return *this;
 }
 
-Dog::~Dog()
+WrongCat::~WrongCat()
 {
-	std::cout << "Dog default constructor called." << std::endl;
+	std::cout << "WrongCat default constructor called." << std::endl;
 	delete _brain;
 }
 
-void Dog::makeSound()const
-{
-	std::cout << "BARK" << std::endl;
-}
-
-void Dog::think(int i)
+void WrongCat::think(int i)
 {
 	if( i >= 0 && i <= 100 && _brain)
 	{	
-		std::cout << "Dog is thinking about: " << _brain->getIdea(i) << std::endl;
+		std::cout << "WrongCat is thinking about: " << _brain->getIdea(i) << std::endl;
 	}
 	else 
 		std::cout << "Brain can't handle idea: " << i << std::endl;
 }
 
-void Dog::thinkIdea(std::string one_idea, int i)
+void WrongCat::thinkIdea(std::string one_idea, int i)
 {
 	if( i >= 0 && i <= 100 && _brain)
 	{
