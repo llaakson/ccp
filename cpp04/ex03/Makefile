@@ -1,12 +1,10 @@
-NAME = Brain
+NAME = a
 
 SOURCES =	main.cpp \
 		AMateria.cpp \
 		Character.cpp \
 		Cure.cpp \
 		Ice.cpp \
-		ICharacter.cpp \
-		IMateriaSource.cpp \
 		MateriaSource.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
