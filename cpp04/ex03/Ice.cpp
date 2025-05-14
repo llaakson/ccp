@@ -4,12 +4,12 @@ Ice::Ice() : AMateria("ice") {}
 
 Ice::~Ice(){}
 
-Ice::Ice(const Ice &copy) : AMateria(copy){}
+Ice::Ice(const Ice &copy) : AMateria(copy._type){}
 
 Ice& Ice::operator=(const Ice &rhs){
 	if (this != &rhs)
 	{
-		return (*this);
+		_type = rhs._type;
 	}
 	return (*this);
 }

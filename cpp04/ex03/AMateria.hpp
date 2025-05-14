@@ -4,11 +4,12 @@
 #include <string>
 #include <iostream>
 #include "ICharacter.hpp"
+#include "Character.hpp"
 
 class AMateria
 {
     protected:
-        std::string const _type;
+        std::string _type;
     public:
         AMateria();
         AMateria(std::string const & type);
@@ -17,7 +18,7 @@ class AMateria
         std::string const & getType() const; //Returns the materia type
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter& target);
-        ~AMateria();
+        virtual ~AMateria();
 };
 
 #endif

@@ -9,16 +9,18 @@ MateriaSource::MateriaSource()
 }
 
 MateriaSource::~MateriaSource(){}
-MateriaSource::MateriaSource(const MateriaSource &copy) : IMateriaSource(copy)
-{}
-MateriaSource& MateriaSource::operator=(const MateriaSource &rhs)
-{
+
+MateriaSource::MateriaSource(const MateriaSource &copy) : IMateriaSource(copy){}
+
+MateriaSource& MateriaSource::operator=(const MateriaSource &rhs){
 	if (this !=  &rhs)
 	{
-		return (*this);
-	}	
+		for(int i = 0; i < 4; i++)
+		{
+			_store[i] = rhs._store[i];
+		}
+	}
 	return (*this);
-
 }
 
 void MateriaSource::learnMateria(AMateria* m) 
@@ -37,10 +39,10 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 {
 	for(int i = 0; i < 4; i++)
 	{
-		if (_store[i]->getType() == type)
+		if (_store[i] != nullptr && _store[i]->getType() == type)
 		{
 			return (_store[i]);
 		}
 	}	
-	return(_store[0]); // returns nullptr ????
+	return(0); 
 }
