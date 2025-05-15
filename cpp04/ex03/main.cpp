@@ -7,30 +7,9 @@
 #include "Character.hpp"
 #include <new>
 
-/*int main()
-{
-    IMateriaSource* src = new MateriaSource();
-    src->learnMateria(new Ice());
-    src->learnMateria(new Cure());
-    ICharacter* me = new Character("me");
-    AMateria* tmp;
-    tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
-    ICharacter* bob = new Character("bob");
-    me->use(0, *bob);
-    me->use(1, *bob);
-    delete bob;
-    delete me;
-    delete src;
-    return 0;
-}*/
-
 int main()
 {
 	{
-		std::cout << "--school test--" << std::endl << std::endl;
 		IMateriaSource* src = new MateriaSource();
 		src->learnMateria(new Ice());
 		src->learnMateria(new Cure());
@@ -46,24 +25,48 @@ int main()
 		delete bob;
 		delete me;
 		delete src;
-		std::cout << std::endl << "--end school test--" << std::endl;
+		std::cout << std::endl;
 	}
 	{
-		std::cout << "--my tests--" << std::endl;
-		Character who("Hania");
-		AMateria* cold = new Ice();
+		std::cout << "----------------Bonus tests------------" << std::endl;
+		Character Char_Chris("Chris");
+		AMateria* bolt = new Ice();
 		AMateria* medicine = new Cure();
-		who.equip(cold);
-		who.equip(medicine);
-		Character whothis("Ala");
-		std::cout << "Character 2 Name: " << whothis.getName() << std::endl;
-		Character whothat("Maria");
-		//whothat = who;		
-		std::cout << "Character 3 Name: " << whothat.getName() << std::endl;
-		std::cout << "Equipments in " << whothat.getName() << std::endl;
+		Char_Chris.equip(bolt);
+		Char_Chris.equip(medicine);
+		Character Char_BoB("Bob");
+		std::cout << "Character Name: " << Char_BoB.getName() << std::endl;
+		Character Char_Kevin("Kevin");
+		// copy character -> Kevin should become Chris
+		Char_Kevin = Char_Chris;		
+		std::cout << "Characte Name: " << Char_Kevin.getName() << std::endl;
 
-    	whothis.use(0, who);
-		whothat.use(1, who);
+		// Bobs inventory is empty should not work
+    	Char_BoB.use(0, Char_Chris);
+		Char_BoB.use(1, Char_Chris);
+		Char_BoB.use(5, Char_Chris);
+		// Kevin has tow items 1 and 0 should work
+		Char_Kevin.use(1, Char_Chris);
+		Char_Kevin.use(0, Char_Chris);
+		Char_Kevin.use(2, Char_Chris);
+		Char_Kevin.use(4, Char_Chris);
+		Char_Kevin.use(-5, Char_Chris);
+		// FIll all slots
+		AMateria* bolt1 = new Ice();
+		AMateria* bolt2 = new Ice();
+		AMateria* bolt3 = new Ice();
+		Char_Kevin.equip(bolt1);
+		Char_Kevin.equip(bolt2);
+		Char_Kevin.equip(bolt3);
+		// Kevin Inventory is full now
+		Char_Kevin.use(1, Char_Chris);
+		Char_Kevin.use(0, Char_Chris);
+		Char_Kevin.use(2, Char_Chris);
+		Char_Kevin.use(3, Char_Chris);
+		Char_Kevin.use(4, Char_Chris);
+
+		delete bolt3;
+
 		std::cout << std::endl << std::endl;
 	}
 	{
@@ -84,39 +87,30 @@ int main()
 		Char1.unequip(0);
 		std::cout << "Using unequipped Materia (should not work): " << std::endl;
 		Char1.use(0, Char1);
-        std::cout << "HERE??" << std::endl;
+		// try to unequip bs;
+		Char1.unequip(-1);
+		Char1.unequip(42);
 		delete brr;
-		//ONCE A CHARACTER IS EQUIPPED WITH A MATERIA, IT'S RESPONSIBLE FOR DELETING IT, OTHERWISE MATERIA HAS TO BE DELETED MANUALLY
-		//delete pomoc;
-		//delete fire;
-		//delete lightning;
-        std::cout << "HERE??" << std::endl;
 		delete iceToEquip;
-		std::cout << "--test end--" << std::endl << std::endl;
+		std::cout << std::endl;
 	}
 	{
 		std::cout << "--learn and create materia--" << std::endl;
     	IMateriaSource* src = new MateriaSource();
     	src->learnMateria(new Ice());
     	src->learnMateria(new Cure());
+		src->learnMateria(new Cure());
+		src->learnMateria(new Cure());
 
     	AMateria* iceClone = src->createMateria("ice");
     	AMateria* cureClone = src->createMateria("cure");
 
-		if (iceClone != nullptr && cureClone != nullptr) {
-        	std::cout << "cloned materia types: " << iceClone->getType() << ", " << cureClone->getType() << std::endl;
-    	}
+		std::cout << iceClone->getType() << std::endl;
+		std::cout << cureClone->getType() << std::endl;	
+
     	delete iceClone;
     	delete cureClone;
     	delete src;
-
-    	std::cout << "--memory fails--" << std::endl;
-    	AMateria* failingMateria = new Ice();
-    	AMateria* clonedMateria = failingMateria->clone();
-
-    	delete failingMateria;
-    	delete clonedMateria;
-		std::cout << std::endl;
 	}
 	return 0;
 }

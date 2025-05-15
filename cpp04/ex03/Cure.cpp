@@ -16,7 +16,13 @@ Cure& Cure::operator=(const Cure &rhs)
 }
 
 AMateria* Cure::clone() const
-{
-		return(new Cure);
+{	
+		try{
+			return(new Cure);
+		}
+		catch (std::bad_alloc& e){ 
+			std::cout << "Cure memory allocation failed " << std::endl;
+			return nullptr;
+		}
 }
 

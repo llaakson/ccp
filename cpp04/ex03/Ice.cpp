@@ -15,6 +15,12 @@ Ice& Ice::operator=(const Ice &rhs){
 }
 
 AMateria* Ice::clone() const
-{
+{	
+	try{
 		return(new Ice);
+	}
+	catch (std::bad_alloc& e){
+		std::cout << "Ice memory allocation failed " << std::endl;
+		return nullptr;
+	}
 }

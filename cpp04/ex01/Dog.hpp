@@ -28,6 +28,7 @@ class Dog : public Animal {
         void makeSound()const override;
 		void think(int i);
 		void thinkIdea(std::string one_idea, int i);
+		void brain_address();
 
 };
 

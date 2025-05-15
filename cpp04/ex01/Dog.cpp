@@ -22,6 +22,7 @@ Dog::Dog() : Animal()
 Dog::Dog(const Dog &copy) : Animal(copy)
 {
 	std::cout << "Dog copy constructor called." << std::endl;
+	_brain = new Brain(*copy._brain);
 }
 
 Dog& Dog::operator=(const Dog &rhs)
@@ -63,4 +64,10 @@ void Dog::thinkIdea(std::string one_idea, int i)
 	{
 		_brain->setIdea(one_idea,i);
 	}
+}
+
+void Dog::brain_address(void)
+{	
+	if (_brain)
+		std::cout << "Brain address is " << &_brain << std::endl;
 }

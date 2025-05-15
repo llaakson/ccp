@@ -32,10 +32,6 @@ int main()
 	}
 	for (int i = 0; i < size; i++)
 		k[i]->makeSound();
-	for (int i = 0; i < size; i++)
-	{
-		delete k[i];
-	}
 	std::cout << "-----------More test-----------" << std::endl;
 	Cat Cat1;
 	Cat1.thinkIdea("Must drop stuff from the table", 1);
@@ -55,5 +51,10 @@ int main()
 
 	//Animal fail;
 
+	for (int i = 0; i < size; i++)
+	{
+		delete k[i];
+	}
+	
 	return 0;
 }

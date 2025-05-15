@@ -18,15 +18,6 @@
 
 int main()
 {
-	Animal One;
-	Dog DogOne;
-	Cat CatOne;
-
-	One.makeSound();
-	DogOne.makeSound();
-	CatOne.makeSound();
-	std::cout << std::endl;
-
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
@@ -36,7 +27,6 @@ int main()
 	j->makeSound();
 	meta->makeSound();
 
-	//...
 	std::cout << std::endl;
 	std::cout << "  =^..^=  WRONG ANIMAL TEST  =^..^=  " << std::endl;
 	const WrongAnimal* meta2 = new WrongAnimal();
@@ -54,6 +44,5 @@ int main()
 	delete(meta);
 	delete(j);
 	delete(i);
-
 	return 0;
 }

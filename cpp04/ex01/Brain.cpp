@@ -23,7 +23,7 @@ Brain::Brain()
 
 Brain::Brain(const Brain &copy)
 {
-	std::cout << "Brain default constructor called." << std::endl;
+	std::cout << "Brain zzz constructor called." << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
 		idea[i] = copy.idea[i];

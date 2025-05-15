@@ -32,10 +32,7 @@ int main()
 	}
 	for (int i = 0; i < size; i++)
 		k[i]->makeSound();
-	for (int i = 0; i < size; i++)
-	{
-		delete k[i];
-	}
+	std::cout << std::endl;
 	std::cout << "-----------More test-----------" << std::endl;
 	Cat Cat1;
 	Cat1.thinkIdea("Must drop stuff from the table", 1);
@@ -45,12 +42,24 @@ int main()
 	Dog1.think(1);
 	Dog1.think(2);
 	Dog1.think(101);
+	std::cout << std::endl;
 	std::cout << "-----------Testing Copying-----------" << std::endl;
 	Dog Dog2;
 	Dog2 = Dog1;
 	Dog1.think(1);
+	Dog1.brain_address();
+	Dog2.brain_address();
 	Dog2.think(2);
 	Cat Cat2 = Cat1;
+	Cat1.brain_address();
+	Cat2.brain_address();
 	Cat2.think(1);
+
+	std::cout << std::endl;
+	std::cout << "-----------Deleting everything-----------" << std::endl;
+	for (int i = 0; i < size; i++)
+	{
+		delete k[i];
+	}
 	return 0;
 }
