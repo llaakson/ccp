@@ -5,9 +5,9 @@ Bureaucrat::Bureaucrat () : _name("Bureaucrat1"), _grade(150){}
 Bureaucrat::Bureaucrat (std::string name, unsigned int grade) : _name(name)
 {
 	if (grade > MIN_GRADE)
-		throw std::invalid_argument("Bureaucrat::GradeTooHighException");
+		throw GradeTooLowException();
 	if (grade < MAX_GRADE)
-		throw std::invalid_argument("Bureaucrat::GradeTooLowException");
+		throw GradeTooHighException();
 	_grade = grade;	
 }
 
@@ -28,7 +28,7 @@ unsigned int Bureaucrat::getGrade() { return (_grade); }
 void Bureaucrat::increaseGrade()
 {
         if (_grade == MAX_GRADE)
-                throw std::invalid_argument("Bureaucrat::GradeTooLowException");
+                throw GradeTooHighException();
 	else 
 		_grade--;
 }
@@ -36,10 +36,13 @@ void Bureaucrat::increaseGrade()
 void Bureaucrat::deacreaseGrade()
 {
        if (_grade == MIN_GRADE)    
-                throw std::invalid_argument("Bureaucrat::GradeTooHighException");
+                throw GradeTooLowException();
        else
 	       _grade++;
 }
+
+const char *Bureaucrat::GradeTooHighException::what() const throw(){return ("Grade too high.");}
+const char *Bureaucrat::GradeTooLowException::what() const throw(){return ("Grade too low.");}
 
 std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bur)
 {
