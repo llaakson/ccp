@@ -16,11 +16,13 @@ class Bureaucrat {
 		Bureaucrat (const Bureaucrat &copy);
 		Bureaucrat& operator=(const Bureaucrat &rhs);
 		~Bureaucrat ();
-
+		
 		std::string getName();
 		unsigned int getGrade();
 		void increaseGrade();
 		void deacreaseGrade();
 };
+
+std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bur);
 
 #endif

@@ -16,11 +16,7 @@ Bureaucrat::Bureaucrat (const Bureaucrat &copy) : _grade(copy._grade){}
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 {
 	if (this != &rhs)
-	{
-		//_name = rhs._name;
         	_grade = rhs._grade;
-	
-	}
 	return (*this);
 }
 
@@ -31,17 +27,23 @@ unsigned int Bureaucrat::getGrade() { return (_grade); }
 
 void Bureaucrat::increaseGrade()
 {
-        if (_grade < MAX_GRADE + 1)
+        if (_grade == MAX_GRADE)
                 throw std::invalid_argument("Bureaucrat::GradeTooLowException");
 	else 
-		_grade++;
+		_grade--;
 }
 
 void Bureaucrat::deacreaseGrade()
 {
-       if (_grade > MIN_GRADE - 1)    
+       if (_grade == MIN_GRADE)    
                 throw std::invalid_argument("Bureaucrat::GradeTooHighException");
        else
-	       _grade--;
+	       _grade++;
+}
+
+std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bur)
+{
+	stream << Bur.getName() << ", bureaucrat grade " << Bur.getGrade() << std::endl;
+	return (stream);
 }
 
