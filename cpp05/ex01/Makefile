@@ -1,7 +1,8 @@
-NAME = Bureaucrat
+NAME = Form
 
 SOURCES =	main.cpp \
 		Bureaucrat.cpp \
+		Form.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

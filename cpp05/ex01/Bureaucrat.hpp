@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
+#include "Form.hpp"
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150
@@ -27,9 +28,9 @@ class Bureaucrat {
 				const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
-                        public:
-                                const char *what() const throw(); 
-                };              
+            public:
+                const char *what() const throw(); 
+        };              
 
 };
 

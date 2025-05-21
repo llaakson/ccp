@@ -1,17 +1,21 @@
-#define FORM_HPP
 #ifndef FORM_HPP
+#define FORM_HPP
 #include <string>
 #include <iostream>
+#include <stdexcept>
 #include "Bureaucrat.hpp"
 
+class Bureaucrat;
+
 class Form {
-	public:
+	private:
 		const std::string _name;
 		bool _signature;
 		const unsigned int _grade;
-		const unsigned int _egrade;
-	private:
+		const unsigned int _level;
+	public:
 		Form();
+		Form(std::string name, bool signature, unsigned int grade, unsigned int level); 
 		Form (const Form &copy);
 		Form& operator=(const Form &rhs);
 		~Form();
@@ -19,9 +23,19 @@ class Form {
 		std::string getName();
 		bool getSignature();
 		unsigned int getGrade();
-		unsigned int getEGrade();
+		unsigned int getLevel();
+		void beSigned(Bureaucrat &bur);
 
-		beSigned(const Bureaucrat);
+		class GradeTooHighException : public std::exception {
+			public:
+				const char *what() const throw();
+		};
+		class GradeTooLowException : public std::exception {
+            public:
+                const char *what() const throw(); 
+        };              
 };
 
-#define FORM_HPP
+std::ostream &operator<<(std::ostream &stream, Form &For);
+
+#endif
