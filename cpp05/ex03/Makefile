@@ -1,4 +1,4 @@
-NAME = AForm
+NAME = Intern
 
 SOURCES =	main.cpp \
 		Bureaucrat.cpp \
@@ -6,6 +6,7 @@ SOURCES =	main.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
 		PresidentialPardonForm.cpp \
+		Intern.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

@@ -20,12 +20,10 @@ Form& Form::operator=(const Form &rhs)
 }
 
 Form::~Form(){}
-                        
 std::string Form::getName(){return(_name);}
 bool Form::getSignature(){return(_signature);}
 unsigned int Form::getGrade(){return(_grade);}
 unsigned int Form::getLevel(){return(_level);}
-
 const char *Form::GradeTooHighException::what() const throw(){return ("Form's grade too high.");}
 const char *Form::GradeTooLowException::what() const throw(){return ("Form's grade too low.");}
                 
