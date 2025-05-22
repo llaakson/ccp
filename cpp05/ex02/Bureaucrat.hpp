@@ -3,12 +3,12 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 	private:
@@ -25,7 +25,9 @@ class Bureaucrat {
 		unsigned int getGrade();
 		void increaseGrade();
 		void deacreaseGrade();
-		void signForm(Form &form);
+		void signForm(AForm &AForm);
+		void executeForm(AForm const & form);
+
 		class GradeTooHighException : public std::exception {
 			public:
 				const char *what() const throw();
