@@ -24,7 +24,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 Bureaucrat::~Bureaucrat (){}
                 
 std::string Bureaucrat::getName() { return (_name); }
-unsigned int Bureaucrat::getGrade() { return (_grade); }
+unsigned int Bureaucrat::getGrade() const { return (_grade); }
 
 void Bureaucrat::increaseGrade()
 {
@@ -64,5 +64,12 @@ void Bureaucrat::signForm(AForm &form)
 
 void Bureaucrat::executeForm(AForm const & form)
 {
-	form.execute(*this);
+	try {
+	form.execute(*this);}
+	catch (std::exception & e)
+    {                                                       
+        std::cout << e.what() << std::endl;
+		return ;
+    }
+	std::cout << getName() << " executed " << form.getName() << std::endl;
 }

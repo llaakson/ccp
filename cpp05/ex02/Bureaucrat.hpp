@@ -22,7 +22,7 @@ class Bureaucrat {
 		~Bureaucrat ();
 		
 		std::string getName();
-		unsigned int getGrade();
+		unsigned int getGrade() const;
 		void increaseGrade();
 		void deacreaseGrade();
 		void signForm(AForm &AForm);

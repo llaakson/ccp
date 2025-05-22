@@ -21,13 +21,14 @@ AForm& AForm::operator=(const AForm &rhs)
 
 AForm::~AForm(){}
                         
-std::string AForm::getName(){return(_name);}
-bool AForm::getSignature(){return(_signature);}
-unsigned int AForm::getGrade(){return(_grade);}
+std::string AForm::getName() const {return(_name);}
+bool AForm::getSignature() const {return(_signature);}
+unsigned int AForm::getGrade() const {return(_grade);}
 unsigned int AForm::getLevel(){return(_level);}
 
 const char *AForm::GradeTooHighException::what() const throw(){return ("AForm's grade too high.");}
 const char *AForm::GradeTooLowException::what() const throw(){return ("AForm's grade too low.");}
+const char *AForm::NoSignature::what() const throw(){return ("Form has no signature.");}
                 
 void AForm::beSigned(Bureaucrat &bur)
 {
@@ -47,6 +48,9 @@ std::ostream &operator<<(std::ostream &stream, AForm &For)
 
 void AForm::execute(Bureaucrat const & executor) const
 {
-    (void)executor;
-    executeAction();    
+    if (executor.getGrade() < getGrade())
+        throw GradeTooLowException();
+    if (getSignature() == false)
+        throw NoSignature();
+    executeAction();
 }

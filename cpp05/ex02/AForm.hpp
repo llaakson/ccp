@@ -20,9 +20,9 @@ class AForm {
 		AForm& operator=(const AForm &rhs);
 		~AForm();
 		
-		std::string getName();
-		bool getSignature();
-		unsigned int getGrade();
+		std::string getName() const;
+		bool getSignature() const;
+		unsigned int getGrade() const;
 		unsigned int getLevel();
 		void beSigned(Bureaucrat &bur);
 
@@ -36,7 +36,11 @@ class AForm {
 		class GradeTooLowException : public std::exception {
             public:
                 const char *what() const throw(); 
-        };              
+        };
+		class NoSignature : public std::exception {
+            public:
+                const char *what() const throw(); 
+        };                         
 };
 
 std::ostream &operator<<(std::ostream &stream, AForm &For);
