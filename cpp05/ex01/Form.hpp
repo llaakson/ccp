@@ -11,19 +11,19 @@ class Form {
 	private:
 		const std::string _name;
 		bool _signature;
-		const unsigned int _grade;
-		const unsigned int _level;
+		const int _grade;
+		const int _level;
 	public:
 		Form();
-		Form(std::string name, bool signature, unsigned int grade, unsigned int level); 
+		Form(std::string name, bool signature, int grade, int level); 
 		Form (const Form &copy);
 		Form& operator=(const Form &rhs);
 		~Form();
 		
 		std::string getName();
 		bool getSignature();
-		unsigned int getGrade();
-		unsigned int getLevel();
+		int getGrade();
+		int getLevel();
 		void beSigned(Bureaucrat &bur);
 
 		class GradeTooHighException : public std::exception {
@@ -33,7 +33,11 @@ class Form {
 		class GradeTooLowException : public std::exception {
             public:
                 const char *what() const throw(); 
-        };              
+        };   
+		class NoSignature : public std::exception {
+            public:
+                const char *what() const throw(); 
+        };                              
 };
 
 std::ostream &operator<<(std::ostream &stream, Form &For);

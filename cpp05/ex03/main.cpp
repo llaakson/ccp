@@ -9,8 +9,8 @@ int main ()
         {
                 Intern someRandomIntern;
                 Bureaucrat SuperBoB("SuperBoB", 1);
-                AForm* rrf;
-                AForm* rrf2;
+                Form* rrf;
+                Form* rrf2;
                 rrf = someRandomIntern.makeForm("robotomy request", "Bender");
                 rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
                 rrf2 = someRandomIntern.makeForm("AAA", "Bender");

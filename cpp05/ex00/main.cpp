@@ -2,20 +2,15 @@
 
 int main ()
 {
-	try 
-	{
+	try {
 	Bureaucrat Bur1("BoB", 151);
-	}
-	catch (std::exception & e)
-	{
-		std::cout << e.what() << std::endl;
+	} catch (std::exception & e){
+	        std::cout << e.what() << std::endl;
 	}
 	try 
         {
-        Bureaucrat Bur2("BoB", 0);
-        }
-        catch (std::exception & e)
-        {                                                       
+        Bureaucrat Bur2("BoB", 0);}
+        catch (std::exception & e){                                                       
                 std::cout << e.what() << std::endl;
         }
 

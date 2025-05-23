@@ -1,16 +1,22 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Form::Form() : _name("Formless"), _signature(false), _grade(150), _level(150){}
 
-Form::Form(std::string name, bool signature, unsigned int grade, unsigned int level) : _name(name), _signature(signature), _grade(grade), _level(level)
+Form::Form(std::string name, bool signature, int grade, int level) : _name(name), _signature(signature), _grade(grade), _level(level)
 {
     if (grade > MIN_GRADE)
 		throw GradeTooLowException();
 	if (grade < MAX_GRADE)
 		throw GradeTooHighException();
+    if (level > MIN_GRADE)
+		throw GradeTooLowException();
+	if (level < MAX_GRADE)
+		throw GradeTooHighException();
 }
 
-Form::Form (const Form &copy) : _name(copy._name), _signature(copy._signature), _grade(copy._grade), _level(copy._level){}
+Form::Form (const Form &copy) : _name(copy._name), _signature(copy._signature), _grade(copy._grade), _level(copy._level)
+{
+}
 
 Form& Form::operator=(const Form &rhs)
 {
@@ -20,25 +26,28 @@ Form& Form::operator=(const Form &rhs)
 }
 
 Form::~Form(){}
+
 std::string Form::getName(){return(_name);}
 bool Form::getSignature(){return(_signature);}
-unsigned int Form::getGrade(){return(_grade);}
-unsigned int Form::getLevel(){return(_level);}
-const char *Form::GradeTooHighException::what() const throw(){return ("Form's grade too high.");}
-const char *Form::GradeTooLowException::what() const throw(){return ("Form's grade too low.");}
+int Form::getGrade(){return(_grade);}
+int Form::getLevel(){return(_level);}
+
+const char *Form::GradeTooHighException::what() const throw(){return ("grade is too high.");}
+const char *Form::GradeTooLowException::what() const throw(){return ("grade is too low.");}
+const char *Form::NoSignature::what() const throw(){return ("form is already signed.");}
                 
 void Form::beSigned(Bureaucrat &bur)
 {
     if (bur.getGrade() > _level)
         throw GradeTooLowException();
     if (_signature == true)
-        std::cout << bur.getName() << " couldn't sign " << getName() << " because grade is already signed." << std::endl;
+        throw NoSignature();
     else
         _signature = true;
 }
 
 std::ostream &operator<<(std::ostream &stream, Form &For)
 {
-	stream << "For name: " << For.getName() << " signature status: " << For.getSignature() << " grade: " << For.getGrade() << " level: " << For.getLevel() << std::endl;
+	stream << "Form name: " << For.getName() << " signature status: " << For.getSignature() << " grade: " << For.getGrade() << " level: " << For.getLevel() << std::endl;
 	return (stream);
 }

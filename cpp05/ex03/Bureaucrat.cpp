@@ -3,7 +3,7 @@
 
 Bureaucrat::Bureaucrat () : _name("Bureaucrat1"), _grade(150){}
 
-Bureaucrat::Bureaucrat (std::string name, unsigned int grade) : _name(name)
+Bureaucrat::Bureaucrat (std::string name, int grade) : _name(name)
 {
 	if (grade > MIN_GRADE)
 		throw GradeTooLowException();
@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat (std::string name, unsigned int grade) : _name(name)
 	_grade = grade;	
 }
 
-Bureaucrat::Bureaucrat (const Bureaucrat &copy) : _grade(copy._grade){}
+Bureaucrat::Bureaucrat (const Bureaucrat &copy) : _name(copy._name), _grade(copy._grade){}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 {
@@ -24,7 +24,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &rhs)
 Bureaucrat::~Bureaucrat (){}
                 
 std::string Bureaucrat::getName() { return (_name); }
-unsigned int Bureaucrat::getGrade() const { return (_grade); }
+int Bureaucrat::getGrade() const { return (_grade); }
 
 void Bureaucrat::increaseGrade()
 {
@@ -51,7 +51,7 @@ std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bur)
 	return (stream);
 }
 
-void Bureaucrat::signForm(AForm &form)
+void Bureaucrat::signForm(Form &form)
 {
 	try {
 		form.beSigned(*this);
@@ -63,7 +63,7 @@ void Bureaucrat::signForm(AForm &form)
 	std::cout << getName() << " signed " << form.getName() << std::endl;
 }
 
-void Bureaucrat::executeForm(AForm const & form)
+void Bureaucrat::executeForm(Form const & form)
 {
 	std::cout << getName() << " executed " << form.getName() << std::endl;
 	try {

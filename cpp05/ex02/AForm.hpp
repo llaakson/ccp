@@ -11,19 +11,19 @@ class AForm {
 	private:
 		const std::string _name;
 		bool _signature;
-		const unsigned int _grade;
-		const unsigned int _level;
+		const int _grade;
+		const int _level;
 	public:
 		AForm();
-		AForm(std::string name, bool signature, unsigned int grade, unsigned int level); 
+		AForm(std::string name, bool signature, int grade, int level); 
 		AForm (const AForm &copy);
 		AForm& operator=(const AForm &rhs);
 		virtual ~AForm();
 		
 		std::string getName() const;
 		bool getSignature() const;
-		unsigned int getGrade() const;
-		unsigned int getLevel() const;
+		int getGrade() const;
+		int getLevel() const;
 		void beSigned(Bureaucrat &bur);
 
 		void execute(Bureaucrat const & executor) const;
@@ -40,7 +40,11 @@ class AForm {
 		class NoSignature : public std::exception {
             public:
                 const char *what() const throw(); 
-        };                         
+        };
+		class IsSignature : public std::exception {
+            public:
+                const char *what() const throw(); 
+        };                                  
 };
 
 std::ostream &operator<<(std::ostream &stream, AForm &For);

@@ -13,20 +13,20 @@ class AForm;
 class Bureaucrat {
 	private:
 		const std::string _name;
-		unsigned int _grade;
+		int _grade;
 	public:
 		Bureaucrat ();
-		Bureaucrat (std::string name, unsigned int grade);
+		Bureaucrat (std::string name, int grade);
 		Bureaucrat (const Bureaucrat &copy);
 		Bureaucrat& operator=(const Bureaucrat &rhs);
 		~Bureaucrat ();
 		
 		std::string getName();
-		unsigned int getGrade() const;
+		int getGrade() const;
 		void increaseGrade();
 		void deacreaseGrade();
-		void signForm(AForm &AForm);
-		void executeForm(AForm const & form);
+		void signAForm(AForm &AForm);
+		void executeAForm(AForm const & AForm);
 
 		class GradeTooHighException : public std::exception {
 			public:

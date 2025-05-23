@@ -5,44 +5,53 @@
 
 int main ()
 {
+        std::cout << "----BASIC-TESTS-----" << std::endl;
 	Bureaucrat Bur50("BoB50", 50);
         Bureaucrat Bur100("BoB100", 100);
         Bureaucrat Bur1("SuperBob", 1);
 	std::cout <<Bur50;
         std::cout <<Bur100;
         ShrubberyCreationForm Berry1;
-        Bur100.signForm(Berry1);
-        Bur100.executeForm(Berry1);
+        Bur100.signAForm(Berry1);
+        Bur100.executeAForm(Berry1);
         ShrubberyCreationForm Berry2("BIGTREE");
         ShrubberyCreationForm Berry3(Berry2);
+        Bur100.executeAForm(Berry2);
+        std::cout << "----BERRY-CLONING-----" << std::endl;
         Berry1 = Berry2;
-        std::cout << Berry2.getTarget() << std::endl;
-        std::cout << Berry1.getTarget() << std::endl;
-        std::cout << Berry3.getTarget() << std::endl;
-        Bur100.executeForm(Berry1);
+        ShrubberyCreationForm Berry4 = Berry1;
+        std::cout << Berry1;
+        std::cout << Berry2;
+        std::cout << Berry3;
+        std::cout << Berry4;
+        Bur100.executeAForm(Berry1);
 
+        std::cout << "----BASIC-ROBOTRY-----" << std::endl;     
         RobotomyRequestForm Robot1;
-        Bur100.executeForm(Robot1);
-        Bur100.signForm(Robot1);
-        Bur100.executeForm(Robot1);
+        std::cout << Robot1;
+        Bur100.executeAForm(Robot1);
+        Bur100.signAForm(Robot1);
+        Bur100.executeAForm(Robot1);
 
-        Bur50.executeForm(Robot1);
-        Bur50.signForm(Robot1);
-        Bur50.executeForm(Robot1);
-        Bur1.executeForm(Robot1);
+        Bur50.executeAForm(Robot1);
+        Bur50.signAForm(Robot1);
+        Bur50.executeAForm(Robot1);
+        std::cout << "----TESTING 50/50-----" << std::endl;   
+        Bur1.executeAForm(Robot1);
 
+        std::cout << "----BASIC-PRESIDENTAL-----" << std::endl; 
         PresidentialPardonForm President1("BadBoB");
-        Bur100.executeForm(President1);
-        Bur100.signForm(President1);
-        Bur100.executeForm(President1);
+        std::cout << President1;
+        Bur100.executeAForm(President1);
+        Bur100.signAForm(President1);
+        Bur100.executeAForm(President1);
 
-        Bur50.executeForm(President1);
-        Bur50.signForm(President1);
-        Bur50.executeForm(President1);
+        Bur50.executeAForm(President1);
+        Bur50.signAForm(President1);
+        Bur50.executeAForm(President1);
 
-        Bur1.executeForm(President1);
-        Bur1.signForm(President1);
-        Bur1.executeForm(President1);
-
+        Bur1.executeAForm(President1);
+        Bur1.signAForm(President1);
+        Bur1.executeAForm(President1);
 	return 0;
 }

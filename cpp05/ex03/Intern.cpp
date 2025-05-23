@@ -17,7 +17,7 @@ Intern& Intern::operator=(const Intern &rhs)
 }
 Intern::~Intern(){}
 
-AForm* Intern::makeForm(std::string fname, std::string target)
+Form* Intern::makeForm(std::string fname, std::string target)
 {
 	std::string form_names[3] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
 	for(int i = 0; i < 3; i++){
