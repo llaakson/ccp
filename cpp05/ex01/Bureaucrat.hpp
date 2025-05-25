@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 #include <stdexcept>
-#include "AForm.hpp"
+#include "Form.hpp"
 
 #define MAX_GRADE 1
 #define MIN_GRADE 150

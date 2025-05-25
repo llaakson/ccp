@@ -4,7 +4,7 @@
 #include "PresidentialPardonForm.hpp"
 
 int main ()
-{
+{       try {
         std::cout << "----BASIC-TESTS-----" << std::endl;
 	Bureaucrat Bur50("BoB50", 50);
         Bureaucrat Bur100("BoB100", 100);
@@ -15,6 +15,7 @@ int main ()
         Bur100.signAForm(Berry1);
         Bur100.executeAForm(Berry1);
         ShrubberyCreationForm Berry2("BIGTREE");
+        //Bur100.signAForm(Berry2);
         ShrubberyCreationForm Berry3(Berry2);
         Bur100.executeAForm(Berry2);
         std::cout << "----BERRY-CLONING-----" << std::endl;
@@ -31,7 +32,6 @@ int main ()
         std::cout << Robot1;
         Bur100.executeAForm(Robot1);
         Bur100.signAForm(Robot1);
-        Bur100.executeAForm(Robot1);
 
         Bur50.executeAForm(Robot1);
         Bur50.signAForm(Robot1);
@@ -42,16 +42,16 @@ int main ()
         std::cout << "----BASIC-PRESIDENTAL-----" << std::endl; 
         PresidentialPardonForm President1("BadBoB");
         std::cout << President1;
-        Bur100.executeAForm(President1);
-        Bur100.signAForm(President1);
-        Bur100.executeAForm(President1);
-
+     
         Bur50.executeAForm(President1);
         Bur50.signAForm(President1);
         Bur50.executeAForm(President1);
 
         Bur1.executeAForm(President1);
         Bur1.signAForm(President1);
-        Bur1.executeAForm(President1);
+        Bur1.executeAForm(President1);}
+        catch (std::exception & e){
+                std::cout << e.what() << std::endl;
+        }
 	return 0;
 }

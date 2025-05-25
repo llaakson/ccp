@@ -1,16 +1,12 @@
-#include "AForm.hpp"
+#include "Form.hpp"
 
 Form::Form() : _name("Formless"), _signature(false), _grade(150), _level(150){}
 
 Form::Form(std::string name, bool signature, int grade, int level) : _name(name), _signature(signature), _grade(grade), _level(level)
 {
-    if (grade > MIN_GRADE)
+    if (grade > MIN_GRADE || level > MIN_GRADE)
 		throw GradeTooLowException();
-	if (grade < MAX_GRADE)
-		throw GradeTooHighException();
-    if (level > MIN_GRADE)
-		throw GradeTooLowException();
-	if (level < MAX_GRADE)
+	else if (grade < MAX_GRADE || level < MAX_GRADE)
 		throw GradeTooHighException();
 }
 

@@ -9,7 +9,11 @@ class Intern {
         Intern& operator=(const Intern &rhs);
         ~Intern();
 
-		Form* makeForm(std::string fname, std::string target);
+		AForm* makeForm(std::string fname, std::string target);
+        class NoForm : public std::exception {
+			public:
+				const char *what() const throw();
+		};
 };
 
 #endif

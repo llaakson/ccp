@@ -3,7 +3,7 @@
 #include "AForm.hpp"
 #include <ctime>
 
-class RobotomyRequestForm : public Form {
+class RobotomyRequestForm : public AForm {
     private:
             std::string _target;
     public:

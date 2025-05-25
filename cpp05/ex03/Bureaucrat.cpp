@@ -51,26 +51,26 @@ std::ostream &operator<<(std::ostream &stream, Bureaucrat &Bur)
 	return (stream);
 }
 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signAForm(AForm &AForm)
 {
 	try {
-		form.beSigned(*this);
+		AForm.beSigned(*this);
 	}
 	catch (std::exception & e){
-		std::cout << getName() << " couldn't sign " << form.getName() << " because grade is too low." << std::endl;
+		std::cout << getName() << " couldn't sign " << AForm.getName() << " " << e.what() << std::endl;
 		return ;
 	}
-	std::cout << getName() << " signed " << form.getName() << std::endl;
+	std::cout << getName() << " signed " << AForm.getName() << std::endl;
 }
 
-void Bureaucrat::executeForm(Form const & form)
+void Bureaucrat::executeAForm(AForm const & AForm)
 {
-	std::cout << getName() << " executed " << form.getName() << std::endl;
+	std::cout << getName() << " executed " << AForm.getName() << std::endl;
 	try {
-	form.execute(*this);}
+	AForm.execute(*this);}
 	catch (std::exception & e)
     {                                                       
-        std::cout << e.what() << std::endl;
-		return ;
+       std::cout << getName() << " couldn't execute " << AForm.getName() << " " << e.what() << std::endl;
+	return ;
     }
 }

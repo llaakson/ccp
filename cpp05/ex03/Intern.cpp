@@ -17,7 +17,7 @@ Intern& Intern::operator=(const Intern &rhs)
 }
 Intern::~Intern(){}
 
-Form* Intern::makeForm(std::string fname, std::string target)
+AForm* Intern::makeForm(std::string fname, std::string target)
 {
 	std::string form_names[3] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
 	for(int i = 0; i < 3; i++){
@@ -33,6 +33,8 @@ Form* Intern::makeForm(std::string fname, std::string target)
 			}
 		}
 	}
-	std::cout << "Intern failed to create " << fname << std::endl;
+	throw NoForm();
 	return (nullptr);
 }
+
+const char *Intern::NoForm::what() const throw(){return ("No form found");}

@@ -1,9 +1,9 @@
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ShrubberyCreationForm_HPP
+#define ShrubberyCreationForm_HPP
 #include "AForm.hpp"
 #include <fstream>
 
-class ShrubberyCreationForm : public Form {
+class ShrubberyCreationForm : public AForm {
     private:
             std::string _target;
     public:
@@ -15,7 +15,6 @@ class ShrubberyCreationForm : public Form {
 
         void executeAction() const;
         std::string getTarget();
-
 };
 
 #endif
