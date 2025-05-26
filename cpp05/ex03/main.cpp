@@ -13,6 +13,8 @@ int main ()
                 AForm* rrf;
               
                 rrf = someRandomIntern.makeForm("ShrubberyCreationForm", "Bender");
+                if (rrf == nullptr)
+                        return 1;
                 SuperBoB.signAForm(*rrf);
                 SuperBoB.executeAForm(*rrf);
                 delete rrf;
@@ -26,6 +28,8 @@ int main ()
                 AForm* rrf;
               
                 rrf = someRandomIntern1.makeForm("RobotomyRequestForm", "Bender");
+                  if (rrf == nullptr)
+                        return 1;
                 SuperBoB1.signAForm(*rrf);
                 SuperBoB1.executeAForm(*rrf);
                 delete rrf;
@@ -38,6 +42,8 @@ int main ()
                 AForm* rrf2;
                 Bureaucrat SuperBoB41;
                 rrf2 = someRandomIntern.makeForm("AAA", "Bender");
+                  if (rrf2 == nullptr)
+                        return 1;
                 SuperBoB41.signAForm(*rrf2);
                 delete rrf2; 
                 } catch (std:: exception &e) {
@@ -49,6 +55,8 @@ int main ()
                 Bureaucrat SuperBoB42;
                 AForm* rrf2;
                 rrf2 = someRandomIntern.makeForm("PresidentialPardonForm", "Bender");
+                if (rrf2 == nullptr)
+                        return 1;
                 SuperBoB42.signAForm(*rrf2);
                 SuperBoB42.executeAForm(*rrf2);
                 delete rrf2; 
