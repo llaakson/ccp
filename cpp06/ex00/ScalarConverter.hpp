@@ -1,6 +1,15 @@
 #ifndef SCAlARCONVERTER_HPP
 #define SCAlARCONVERTER_HPP
 #include <iostream>
+#include <string>
+
+typedef enum {
+	FLOAT,
+	DOUBLE,
+	CHAR,
+	INT,
+	SPECIAL,
+} type_t;
 
 class ScalarConverter {
 	public :
@@ -10,6 +19,7 @@ class ScalarConverter {
 		~ScalarConverter();
 
 		void convert(std::string convert);
+		int findType(std::string convert);
 };
 
 #endif
