@@ -42,6 +42,40 @@ int ScalarConverter::findType(std::string convert)
 		return (INT);
 }
 
+/*char convert_char(int i)
+{
+	if (i < 32 || i > 126)
+		std::cout << "char : Non displayable" << std::endl;
+	
+}*/
+
+void print_special(std::string convert)
+{
+	if (convert == "nan" || convert == "nanf")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf"<< std::endl;
+		std::cout << "double: nan" << convert << std::endl;
+	}
+	else if (convert == "+inf" || convert == "+inff")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: +inff"<< std::endl;
+		std::cout << "double: +inf" << convert << std::endl;
+	}
+	else if (convert == "-inf" || convert == "-inff")
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: -inff"<< std::endl;
+		std::cout << "double: -inf" << convert << std::endl;
+	}
+	else
+		std::cout << "Invalid input." << std::endl;
+}
+
 void ScalarConverter::convert(std::string convert)
 {
 	int type = findType(convert);
@@ -49,26 +83,37 @@ void ScalarConverter::convert(std::string convert)
 
 	if (type == FLOAT)
 	{
-		float c = std::stof(convert);
-		std::cout << "char: " << "'" << char(c) << "'" << std::endl;
-		std::cout << "int: " << int(c) << std::endl;
+		float f = std::stof(convert);
+		std::cout << "char: " << "'" << char(f) << "'" << std::endl;
+		std::cout << "int: " << int(f) << std::endl;
 		std::cout << "float: " << convert << std::endl;
-		std::cout << "double: " << c << std::endl;
+		std::cout << "double: " << f << std::endl;
 	}
 	else if (type == DOUBLE)
-		std::cout << "conver DOUBLE" << std::endl;
+	{
+		double d = std::stod(convert);
+		std::cout << "char: " << "'" << char(d) << "'" << std::endl;
+		std::cout << "int: " << int(d) << std::endl;
+		std::cout << "float: " << convert << std::endl;
+		std::cout << "double: " << convert << std::endl;
+	}
 	else if (type == CHAR)
-		std::cout << "conver CHAR" << std::endl;
+	{
+		char c = std::stof(convert); //aergaerg
+		std::cout << "char: " << "'" << c << "'" << std::endl;
+		std::cout << "int: " << int(c) << std::endl;
+		std::cout << "float: " << float(c) << std::endl;
+		std::cout << "double: " << double(c) << std::endl;
+	}
 	else if (type == INT)
-		std::cout << "conver INT" << std::endl;
+	{
+		int i = stoi(convert);
+		std::cout << "char: " << "'" << char(i) << "'" << std::endl;
+		std::cout << "int: " << i << std::endl;
+		std::cout << "float: " << double(i) << std::endl;
+		std::cout << "double: " << double(i) << std::endl;
+	}
 	else if (type == SPECIAL)
-		std::cout <<"conver SPECIAL" << std::endl;
+		print_special(convert);
 
-	/*std::cout << "char: " << "'" << char(c) << "'" << std::endl;
-
-	std::cout << "int: " << c << std::endl;
-
-	std::cout << "float: " << std::stof(convert) << std::endl;
-
-	std::cout << "double: " << std::stod(convert) << std::endl;*/
 }
