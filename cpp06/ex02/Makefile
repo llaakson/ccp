@@ -1,7 +1,7 @@
 NAME = converter
 
 SOURCES =	main.cpp \
-		Serializer.cpp \
+		Base.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
