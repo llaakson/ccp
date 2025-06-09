@@ -2,6 +2,7 @@ NAME = converter
 
 SOURCES =	main.cpp \
 		Serializer.cpp \
+		Data.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

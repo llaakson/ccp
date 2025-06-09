@@ -1,22 +1,19 @@
 #ifndef SERIALIZER_HPP
 #define SERIALIZER_HPP
 #include <iostream>
-
-typedef struct Data {
-	str::string Name;
-	int number;
-	str::string type;
-} Data;
+#include <cstdint>
+#include <stdint.h>
+#include "Data.hpp"
 
 class Serializer {
 	private:
-		Serializer();
-                Serializer(const Serializer &copy);
-                Serializer& operator=(const Serializer &rhs);
-                ~Serializer();
+		Serializer() = delete;
+        Serializer(const Serializer &copy) = delete;
+        Serializer& operator=(const Serializer &rhs) = delete;
+        ~Serializer() = delete;
 	public:
-		uintptr_t serialize(Data* ptr);
-		Data* deserialize(uintptr_t raw);
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
 };
 
 #endif
