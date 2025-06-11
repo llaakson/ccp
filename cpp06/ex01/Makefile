@@ -1,4 +1,4 @@
-NAME = converter
+NAME = serialization
 
 SOURCES =	main.cpp \
 		Serializer.cpp \

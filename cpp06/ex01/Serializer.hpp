@@ -7,10 +7,10 @@
 
 class Serializer {
 	private:
-		Serializer() = delete;
-        Serializer(const Serializer &copy) = delete;
-        Serializer& operator=(const Serializer &rhs) = delete;
-        ~Serializer() = delete;
+		Serializer();
+        Serializer(const Serializer &copy);
+        Serializer& operator=(const Serializer &rhs);
+        ~Serializer();
 	public:
 		static uintptr_t serialize(Data* ptr);
 		static Data* deserialize(uintptr_t raw);

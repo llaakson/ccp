@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <cstring>
 #include <cmath>
+#include <limits>
 
 typedef enum {
 	FLOAT,
@@ -15,14 +16,13 @@ typedef enum {
 } type_t;
 
 class ScalarConverter {
-	public :
+	private:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter &copy);
 		ScalarConverter &operator=(const ScalarConverter &rhs);
 		~ScalarConverter();
-
-		void convert(std::string convert);
-		int findType(std::string convert);
+	public :
+		static void convert(std::string convert);
 };
 
 #endif

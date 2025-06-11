@@ -3,7 +3,7 @@
 
 int main()
 {
-	/*try {
+	try {
 	Data *pika = new Data();
 	pika->open_datadex();
 	std::cout << "Data* is " << pika << std::endl;
@@ -21,8 +21,8 @@ int main()
 	}
 	catch (const std::exception& e){
 		std::cerr << e.what() << std::endl;
-	}*/
-	try {
+	}
+	/*try {
 	Data *pika = new Data();
 	Data *pika2 = new Data();
 	//pika->open_datadex();
@@ -52,5 +52,5 @@ int main()
 	catch (const std::exception& e){
 		std::cerr << e.what() << std::endl;
 	}
-	return 0;
+	return 0;*/
 }

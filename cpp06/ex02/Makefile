@@ -1,4 +1,4 @@
-NAME = converter
+NAME = identify
 
 SOURCES =	main.cpp \
 		Base.cpp \
