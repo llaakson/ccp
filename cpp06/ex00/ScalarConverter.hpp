@@ -2,6 +2,9 @@
 #define SCAlARCONVERTER_HPP
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cstring>
+#include <cmath>
 
 typedef enum {
 	FLOAT,

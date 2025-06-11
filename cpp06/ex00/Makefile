@@ -1,4 +1,4 @@
-NAME = converter
+NAME = convert
 
 SOURCES =	main.cpp \
 		ScalarConverter.cpp \

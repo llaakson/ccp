@@ -5,7 +5,7 @@ int main (int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Error" << std::endl;
+		std::cerr << "Error! Usage ./converter <argument>" << std::endl;
 		return 1;
 	}
 	ScalarConverter Converter;
