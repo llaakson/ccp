@@ -4,23 +4,21 @@
 #include <iostream>
 
 template <typename T> class Array {
+	private:
+		T *_array;
+		size_t _size;
 	public:
-		int *_poop;
-		int _size;
-
-		Array(){
-			_poop = new int[0];
-		}
-		Array(T size){
-			_poop = new int[size];
-			for (int i = 0; i < size; i++)
-				_poop[i] = 1;
-			_size = size;
-		}
-
-		T& operator[](int);
+		Array();
+		Array(unsigned int size);
+		Array(const Array<T> &copy);
+		Array<T> &operator=(const Array<T> &rhs);
 		~Array();
-		size_t size();
+
+		T& operator[](size_t index) const;
+		//T& operator[](size_t index);
+		size_t size() const;
 };
+
+#include "Array.tpp"
 
 #endif
