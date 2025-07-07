@@ -1,11 +1,10 @@
 #include "Array.hpp"
 
 template <class T>
-Array<T>::Array() : _array(nullptr), _size(0) {
-}
+Array<T>::Array() : _size(0), _array(new T[0]) {}
 
 template <class T>
-Array<T>::Array(unsigned int size) : _array(nullptr), _size(size){
+Array<T>::Array(unsigned int size) :  _size(size), _array(nullptr){
 	_array = new T[size];
 }
 
@@ -30,19 +29,20 @@ Array<T> &Array<T>::operator=(const Array<T> &rhs){
 }
 
 template <class T>
-T &Array<T>::operator[](size_t index) const 
+const T &Array<T>::operator[](size_t index) const 
 {
 	 if (index >= _size)
 	 	throw(std::runtime_error("Index is out of bounds."));
 	return _array[index];
 }
 
-// template <class T>
-// T &Array<T>::operator[](size_t index){
-// 	 if (index >= _size)
-// 	 	throw(std::runtime_error("Index is out of bounds."));
-// 	return _array[index];
-// }
+template <class T>
+T &Array<T>::operator[](size_t index)
+{
+	 if (index >= _size)
+	 	throw(std::runtime_error("Index is out of bounds."));
+	return _array[index];
+}
 
 template <class T>
 Array<T>::~Array(){
