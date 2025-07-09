@@ -1,11 +1,12 @@
-NAME = array
+NAME = easyfind
 
 SOURCES =	main.cpp \
+			Span.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
 CC	=	c++ 
-CFLAGS = -Wall -Werror -Wextra -std=c++17
+CFLAGS = -Wall -Werror -Wextra -std=c++20
 
 all: $(NAME)
 
