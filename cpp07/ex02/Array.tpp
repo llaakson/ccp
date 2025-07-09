@@ -9,20 +9,19 @@ Array<T>::Array(unsigned int size) :  _size(size), _array(nullptr){
 }
 
 template <class T>
-Array<T>::Array(const Array<T> &copy){
-	_array = new T[copy.size()];
-		for (size_t i = 0; i < copy.size(); i++)
+Array<T>::Array(const Array<T> &copy) : _size(copy._size), _array(new T[copy._size]) {
+		for (size_t i = 0; i < copy._size; i++)
 			_array[i] = copy._array[i];
-	_size = copy._size;
 }
 
 template <class T>
 Array<T> &Array<T>::operator=(const Array<T> &rhs){
 	if (this != &rhs){
+		T* newArray = new T[rhs._size];
+		for (size_t i = 0; i < rhs._size; i++)
+			newArray[i] = rhs._array[i];
 		delete [] _array;
-		_array = new T[rhs.size()];
-		for (size_t i = 0; i < rhs.size(); i++)
-			_array[i] = rhs._array[i];
+		_array = newArray;
 		_size = rhs._size;
 	}
 	return (*this);
