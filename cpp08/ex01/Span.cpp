@@ -7,7 +7,6 @@ Span::Span() : _N(0) {}
 Span::Span(unsigned int N) : _N(N) {
 	
 }
-
 Span::~Span(){}
 
 Span::Span(const Span &copy) : _N(copy._N) {}
@@ -48,9 +47,19 @@ unsigned int Span::longestSpan(){
 	return (max_val - min_val);
 }
 
-void Span::FillSpan(){
-	for (unsigned int i = 0; i < _N; i++)
-	{
-		addNumber(rand());
+void Span::FillSpan(std::vector<int>::iterator start, std::vector<int>::iterator end){
+	unsigned int distance = std::distance(start,end);
+	if (distance > _N)
+		throw std::runtime_error("Span is full");
+	_v.insert(_v.begin(), start, end);
+	std::cout << "Printing the list of size: " << distance << std::endl;
+	for (auto it = _v.begin(); it != _v.end(); ++it){
+		std::cout << *it << std::endl;
 	}
+	std::cout << "End of list" << std::endl;
+	//  for (; start != end; ++start) {
+  	// 	if (_v.size() == _N)
+	// 		throw std::runtime_error("Span is full");
+	// 	_v.push_back(42);	
+	//}	
 }
