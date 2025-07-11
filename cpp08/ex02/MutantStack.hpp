@@ -1,22 +1,29 @@
 #ifndef MUTANTSTACK_HPP
-#define MUTANTSTACK__HPP
+#define MUTANTSTACK_HPP
 
 #include <stack>
 #include <iterator>
+#include <deque>
 
 template<typename T>
 class MutantStack : public std::stack<T>{
     private:
 
     public:
-        MutantStack();
-        ~MutantStack();
-        MutantStack(const MutantStack &copy);
-        MutantStack<T>& operator=(const MutantStack<T> &rhs);
+        MutantStack() : std::stack<T>(){}
+        ~MutantStack(){}
+        MutantStack(const MutantStack &copy) : std::stack<T>(copy){}
+        MutantStack<T>& operator=(const MutantStack<T> &rhs){
+            if (this != &rhs)
+                std::stack<T>::operator=(rhs);
+            return *this;
+        }
 
-        iterator begin();
-        iterator end();
+        //container_type is a typedef inside std::stack that tells you what the underlying container is.
+        typedef typename std::stack<T>::container_type::iterator iterator;
 
+        iterator begin(){return this->c.begin();}
+        iterator end(){return this->c.end();}
 };
 
 #endif

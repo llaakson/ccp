@@ -1,6 +1,5 @@
 #include "Span.hpp"
 #include <algorithm>
-#include <iostream>
 
 Span::Span() : _N(0) {}
 
@@ -46,20 +45,15 @@ unsigned int Span::longestSpan(){
 	int min_val = *std::min_element(_v.begin(), _v.end());
 	return (max_val - min_val);
 }
-
-void Span::FillSpan(std::vector<int>::iterator start, std::vector<int>::iterator end){
-	unsigned int distance = std::distance(start,end);
-	if (distance > _N)
-		throw std::runtime_error("Span is full");
-	_v.insert(_v.begin(), start, end);
-	std::cout << "Printing the list of size: " << distance << std::endl;
-	for (auto it = _v.begin(); it != _v.end(); ++it){
-		std::cout << *it << std::endl;
-	}
-	std::cout << "End of list" << std::endl;
-	//  for (; start != end; ++start) {
-  	// 	if (_v.size() == _N)
-	// 		throw std::runtime_error("Span is full");
-	// 	_v.push_back(42);	
-	//}	
-}
+// template <typename T>
+// void Span::FillSpan(T start, T end){
+// 	unsigned int distance = std::distance(start,end);
+// 	if (distance + _v.size() > _N)
+// 		throw std::runtime_error("Span is full");
+// 	_v.insert(_v.begin(), start, end);
+// 	std::cout << "Printing the list of size: " << distance << std::endl;
+// 	for (auto it = _v.begin(); it != _v.end(); ++it){
+// 		std::cout << *it << std::endl;
+// 	}
+// 	std::cout << "End of list" << std::endl;
+// }

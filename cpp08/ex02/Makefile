@@ -1,7 +1,6 @@
 NAME = MutantStack
 
 SOURCES =	main.cpp \
-			MutantStack.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 

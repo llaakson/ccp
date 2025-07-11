@@ -1,4 +1,4 @@
-NAME = easyfind
+NAME = Span
 
 SOURCES =	main.cpp \
 			Span.cpp \
