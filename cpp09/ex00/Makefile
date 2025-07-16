@@ -1,6 +1,6 @@
 NAME = btc
 
-SOURCES =	main.cpp \
+SOURCES =	main.cpp BitcoinExchange.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
