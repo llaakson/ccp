@@ -18,6 +18,7 @@ class BitcoinExchange {
 		void Converter(char **argv);
 		void Print_conversion_rate(std::string date, double rate);
 		void amount_value_check(std::string n, std::string date);
+		void validate_date(std::string date);
 
 };
 

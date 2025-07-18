@@ -74,6 +74,7 @@ void BitcoinExchange::Converter(char **argv){
 
 	while (std::getline(input,date)){
 		std::getline(input, date, '|');
+		validate_date(date);
 		std::getline(input, rate);
 			// amount_value_check(rate,date);
 			// continue ;}
@@ -91,3 +92,31 @@ void BitcoinExchange::Converter(char **argv){
 	}
 }
 
+void BitcoinExchange::validate_date(std::string date){
+	
+	if (date.size() != 10)
+		std::cerr << "Error! Invalid Syntax" << std::endl;
+
+	if (date[4] != '-' || date[7] != '7')
+		std::cerr << "Error! Invalid Syntax" << std::endl;
+
+	for (int i = 0; i < 10;i++){
+		if (i == 4 || i == 7)
+			continue;
+		if (!std::isdigit(date[i]))
+			std::cerr << "Error! Invalid Syntax" << std::endl;
+	}
+	int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	int year = std::stoi(date.substr(0,4));
+	int month = std::stoi(date.substr(5,2));
+	int day = std::stoi(date.substr(8,2));
+
+	if (year < 2009)
+		std::cerr << "Error! Invalid Date" << std::endl;
+	if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
+		days[1] = 29;
+	if (month < 1 || month > 12)
+		std::cerr << "Error! Invalid Date" << std::endl;
+	if (day < 1 || day > days[month - 1])
+		std::cerr << "Error! Invalid Date" << std::endl;
+}
