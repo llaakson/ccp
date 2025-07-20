@@ -2,22 +2,25 @@
 #define POLISH_HPP
 
 #include <string>
-#include <deque>
 #include <iostream>
 #include <iterator>
+#include <stack>
+#include <sstream>
+#include <cctype>
+#include <cstdlib>
 
 class Polish {
     private:
-        std::deque<int> _stack;
+        std::stack<int> _stack;
     public:
         Polish();
-        Polish(char *argv);
+        Polish(const std::string &argv);
         ~Polish();
         Polish(const Polish &copy);
         Polish& operator=(const Polish &rhs); 
 
-        void calculate_rpn();
-        int calculate_instance(int n1, int n2, char op);
+        ///void calculate_rpn();
+        void calculate_instance(int n1, int n2, char op);
 
 };
 
