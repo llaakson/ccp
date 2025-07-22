@@ -5,13 +5,14 @@
 #include <iterator>
 #include <iostream>
 #include <deque>
+#include <map>
 
 #include <bits/stdc++.h>
 
 class PmergeMe {
     private:
-        std::vector<int> _a_vector;
-        std::deque<int> _b_deque;
+        // std::vector<int> _a_vector;
+        // std::deque<int> _b_deque;
         int _uneven_side_number;
     public:
         PmergeMe();
@@ -19,8 +20,7 @@ class PmergeMe {
         ~PmergeMe();
         PmergeMe& operator=(const PmergeMe &rhs);
 
-        void start_merging(int argc, char **argv);
-        void short_a_vector();
+        std::vector<int> start_merging(std::vector<int> A_vector);
 };
 
 #endif
