@@ -1,26 +1,23 @@
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
+#pragma once
 
 #include <vector>
-#include <iterator>
-#include <iostream>
 #include <deque>
-#include <map>
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <algorithm>
+#include <list>
+#include <cmath>
 
 class PmergeMe {
     private:
-        // std::vector<int> _a_vector;
-        // std::deque<int> _b_deque;
-        int _uneven_side_number;
+
     public:
         PmergeMe();
-        PmergeMe(const PmergeMe &copy);
         ~PmergeMe();
-        PmergeMe& operator=(const PmergeMe &rhs);
+        PmergeMe(PmergeMe &copy);
+        PmergeMe& operator=(PmergeMe &rhs);
 
-        std::vector<int> start_merging(std::vector<int> A_vector);
+        void start(std::vector<int> &container, int _level);
+        long jacobsthal_number(long n);
+
 };
 
-#endif
