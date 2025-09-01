@@ -15,13 +15,21 @@ PmergeMe& PmergeMe::operator=(PmergeMe &rhs){
 
 long PmergeMe::jacobsthal_number(long n) { return round((pow(2, n + 1) + pow(-1, n)) / 3);}
 
-bool cmp(const std::vector<int>::iterator& a, const std::vector<int>::iterator& b) {return *a < *b;};
+template <typename T>
+bool cmp(T &a, T &b) {return a < b;};
 
 void PmergeMe::start(std::vector<int> &container, int _level){
-    for (auto it = container.begin(); it != container.end(); ++it){
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    // int x = 0;
+    // while(x < 10){
+    //     long p = jacobsthal_number(x);
+    //     std::cout << p << "\n";
+    //     x++;
+    // }
+
+    // for (auto it = container.begin(); it != container.end(); ++it){
+    //     std::cout << *it << " ";
+    // }
+    // std::cout << std::endl;
     if (container.size() / _level < 2) // Here to stop recursion
         return;
     
@@ -48,132 +56,92 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     }  
     std::cout << std::endl;
     start(container, _level * 2); // recursio with increased level
-    std::list<std::vector<int>::iterator> main;
-    std::list<std::vector<int>::iterator> pend;
-
+    std::vector<int> main, pend, extra;
     std::cout << "Making main" << std::endl;
-    for (auto it = container.begin(); it != container.begin() + _level * 2; ++it){
-        main.push_back(it);
-    }
-    // add rest
-    //std::cout << "Adding rest to the main" << std::endl;
-    int c = 0;
-    if ((size_t)std::distance(container.begin(), end + _level) < container.size())
-        end += _level;
-    if (_level == 1 && container.size() > 3)
-        end--;
-    //std::cout << "Adding pend" << std::endl;
-    for (auto it = container.begin() + _level * 2; it != end; ++it)
+    //Put b1 and a1 to main
+    // for (auto it = container.begin(); it != container.begin() + _level * 2; ++it){
+    //     main.insert(main.end(),*it);
+    // }
+    main.insert(main.begin(), container.begin(), container.begin() + _level *2);
+    unsigned long i = 2; 
+    // Adding pend and main
+    while(i < container.size() / _level)
     {
-        if (c >= _level)
-            main.push_back(it);
+        unsigned long start_position = _level * i;
+        if (i % 2 == 1)
+            main.insert(main.end(), container.begin() + start_position, container.begin() + start_position + _level);
         else
-            pend.push_back(it);
-        c++;
-        if (c == 2 * _level)
-            c = 0;
+            pend.insert(pend.end(), container.begin() + start_position, container.begin() + start_position + _level);
+        i++;
     }
-    if (container.size() / _level % 2 == 1)
-        for (auto it = end; it != container.end(); ++it)
-            pend.push_back(it);
+    // Making extra
+    extra.insert(extra.begin(), container.begin() + i * _level, container.end());
 
-    std::cout << "LEVEL: " << _level << " : ";
+     std::cout << "-----------------LEVEL: -----------" << _level << " : ";
     for (auto it = container.begin(); it != container.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
     std::cout << "MAIN: " << _level << " : ";
-    for (auto it = main.begin(); it != main.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
+    for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
     std::cout << "PEND: " << _level << " : ";
-    for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
+    for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    std::cout << "EXTRA: " << _level << " : ";
+    for (auto it = extra.begin(); it != extra.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
 
-    auto old_jacob = jacobsthal_number(1);
-    int main_helper = 0;
-    for (long k = 2; ; ++k)
+    // ---------------Jacob-------------------
+    int aa = 0;
+    auto previous_jacobs_num = jacobsthal_number(1);
+    for (long k = 2; ;++k)
     {
-        // Find next index
-        auto distance = jacobsthal_number(k);
-        auto number_of_pends = distance - old_jacob;
-        if (((distance-1) * _level - 1) >= (long)pend.size()) // stop the loop
+        aa = 0;
+        auto jacobs_num = jacobsthal_number(k);
+        auto number_of_pends = jacobs_num - previous_jacobs_num;
+        if (jacobs_num > (long)pend.size())
             break;
-        auto it = pend.begin();
-
-        std::advance(it, number_of_pends * _level - 1); // <- what we should append to the main fron pend
-        //it += (int)distance; // move iterator to correct position;
-        std::cout << "Jacob nummber: " << distance << " pend number is: " << **it << std::endl;
+        // Find the correct value from pend vector
+        //std::cout << "Jacob nummber: " << jacobs_num << " pend number is: " << *pend_position << std::endl;
         while(number_of_pends){
-            std::cout << "Insertion start: " << number_of_pends << " pend number is: " << **it << std::endl;
-            for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
-            for (auto it = main.begin(); it != main.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
-            auto start_pos = pend.begin();
-            if (number_of_pends != 1)
-                std::advance(start_pos, _level); // need to advance based on number of pends ??
-            //find the insertion place
-            auto main_end = main.end();
-            std::advance(main_end, main_helper);
-            auto aa = std::upper_bound(main.begin(),main_end,*it,cmp);
-            std::advance(aa,-_level+1);
-             std::cout << "AAAA: " << **aa << std::endl;
-     
-            it++;
-            std::cout << "MAIN: " << **aa << " START: " << **start_pos << " END: " << **it << std::endl;
-            main.insert(aa, start_pos, it);
-            std::cout << "Insertion done" << std::endl;
-            for (int i = 0; i < _level; i++){
-                //std::cout << **start_pos << std::endl;
-                start_pos = pend.erase(start_pos);
+            auto pend_position = pend.begin();
+            pend_position += number_of_pends * _level -1;
+            //Find the correct position in main where to insert
+            // Upper bound uses custom comparator
+            auto main_insert_position = std::upper_bound(main.begin(),main.begin()+jacobs_num*_level,*pend_position,[](int a, int b) { return a < b; });
+            std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
+            if (main_insert_position != main.begin()){
+                main_insert_position -= _level+1;
             }
-            it = start_pos;
-            it--;
+            std::cout << "Jacob nummber: " << jacobs_num << " pend number is: " << *pend_position 
+            << " main insert position: " << *(main_insert_position)<< std::endl;
+            main.insert(main_insert_position, pend_position - _level + 1, pend_position + 1);
+            auto erase_start = pend_position - _level + 1;
+            auto erase_end = pend_position + 1;
+            pend.erase(erase_start, erase_end);
+            std::cout << "Pending to main" << std::endl;
+
+            //pend_position -= _level;
             number_of_pends--;
-            main_helper = -1 * number_of_pends;
+            aa++;
+            previous_jacobs_num = jacobs_num;
+
+                // for (auto it = container.begin(); it != container.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+                std::cout << "MAIN: " << _level << " : ";
+                for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+                std::cout << "PEND: " << _level << " : ";
+                for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+                // std::cout << "EXTRA: " << _level << " : ";
+                // for (auto it = extra.begin(); it != extra.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
         }
-        old_jacob = distance;
-        std::cout << "Getting new number" << std::endl;
     }
-    std::cout << "Done with Jacob" << std::endl;
-    main.insert(main.end(), pend.begin(), pend.end());
-    for (auto it = main.begin(); it != main.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
+    //Insert leftovers
+    if (pend.size())
+        main.insert(main.end(),pend.begin(),pend.end());
+    //Insert the eXtra
+    main.insert(main.end(), extra.begin(), extra.end());
+    std::cout << "After Jacobs magic" << std::endl;
+    std::cout << "MAIN: " << _level << " : ";
+    for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    std::cout << "PEND: " << _level << " : ";
+    for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
 
-    std::list<std::vector<int>::iterator> copy;
-    for (auto it = main.begin(); it != main.end(); ++it)
-    {
-        copy.push_back(*it);
-        // for (int i = 0; i < _level; i++)
-        // {
-        //     auto pair_start = *it;
-        //     std::advance(pair_start, -_level + i + 1);
-        //     copy.insert(copy.end(), **it, pair_start);
-        // }
-    }
-    std::cout << "COPYYYYYYYYYYYYYYYYYYYY" << std::endl;
-    for (auto it = copy.begin(); it != copy.end(); ++it){std::cout << **it << " ";}std::cout << "\n";
-    
+    container = main;
 
-    
-    // int u = 0;
-    // for (auto it = container.begin(); it != container.end(); ++it){
-    //     container[u] = *it;
-    //     u++;
-    // }
-
-    auto original_container = container.begin();
-    auto main_copy = copy.begin();
-    while (main_copy != copy.end())
-    {
-        std::cout << "Original container: " << *original_container << "  copy amin: " << **main_copy << std::endl;
-        *original_container = **main_copy;
-        original_container++;
-        main_copy++;
-    }
     return ;
 }
-
-       // auto main_start = main.begin();
-            // for (size_t i = 0; i < pend.size(); i += _level)
-            // {
-            //     std::advance(main_start, _level);
-            //     if (i == 0)
-            //         std::advance(main_start,-1);
-            //     std::cout << "main_start: " << **main_start << " start pos: " << **it << std::endl;
-            //     if (**main_start > **it){
-            //         main_start++;
-            //         break;}
-            // }
