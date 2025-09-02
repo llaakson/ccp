@@ -1,6 +1,6 @@
 CXX=c++
 CFLAGS=-Wall -Wextra -Werror -std=c++20 -O2
-
+#-fsanitize=address,undefined -g
 NAME=PmergeMe
 SRCS=main.cpp PmergeMe.cpp
 HEADER=PmergeMe.hpp

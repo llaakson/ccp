@@ -9,7 +9,7 @@
 
 class PmergeMe {
     private:
-
+            int comparison;
     public:
         PmergeMe();
         ~PmergeMe();
@@ -18,5 +18,7 @@ class PmergeMe {
 
         void start(std::vector<int> &container, int _level);
         long jacobsthal_number(long n);
+
+        int getComparison();
 
 };
