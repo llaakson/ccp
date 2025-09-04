@@ -30,8 +30,7 @@ void PmergeMe::create_temp_pend(std::vector<int> &temp_pend, int level, int jaco
     //(void)shit;
     int i = 2;
     if (level == 1 && flag == 1){
-        //_temp_pend = temp_pend;
-        _temp_pend.insert(_temp_pend.begin(), temp_pend.begin(), temp_pend.end() - shit);
+        _temp_pend.insert(_temp_pend.begin(), temp_pend.begin(), temp_pend.begin()  + shit);
           std::cout << "Created temp main"  << std::endl;
          for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
         std::cout << *it << " ";
@@ -75,7 +74,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
  
     if (container.size() / _level < 2) // Here to stop recursion
         return;
-    
+    bool odd = container.size() / _level % 2 == 1;
     auto end = container.end();
     end -= container.size() - (_level * (container.size() / _level));
     if (container.size() / _level % 2 == 1){
@@ -138,15 +137,15 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     {
         auto jacobs_num = jacobsthal_number(k);
         auto number_of_pends = jacobs_num - previous_jacobs_num;
-        if (jacobs_num > (long)pend.size())
+        if (number_of_pends > (long)pend.size())
         {
-            shit = 0;
+            shit = pend.size() - 1;
+            int tit = pend.size();
             while (pend.size())
             {
                 auto pend_position2 = pend.end();
                 pend_position2--;
-                //create_temp_pend(main,_level,main.size()/_level-shit);
-                create_temp_pend(main,_level,jacobs_num+stored_pends,shit,1);
+                create_temp_pend(main,_level,jacobs_num+stored_pends,(main.size() - tit+shit+odd),1);
                 auto main_insert_position2 = std::upper_bound(_temp_pend.begin(),_temp_pend.end(),*pend_position2,[&](int a, int b) {comparison++; return a < b; });
                 if (main_insert_position2 == _temp_pend.end()){
                     main_insert_position2 = main.begin()+(_temp_pend.size()*_level);}
@@ -162,8 +161,8 @@ void PmergeMe::start(std::vector<int> &container, int _level){
                  std::cout << "Leftovers: pend number is: " << *pend_position2 << " main insert position: " << *main_insert_position2 << std::endl;
                 main.insert(main_insert_position2, pend.end()-_level, pend.end());
                 pend.erase(pend.end()-_level,pend.end());
-                if (_level == 1)
-                    shit++;
+                //if (_level == 1)
+                shit--;
             }
             break;
         }
@@ -187,6 +186,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
             if (main_insert_position == _temp_pend.end()){
                 main_insert_position = main.begin()+(_temp_pend.size()*_level);
                 //main_insert_position -= _level-1;
+                stored_pends--;
                 std::cout << "AAAAAAAAAAAAAAA"  << std::endl;
             }
             else{
@@ -225,6 +225,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
 
     container = main;
+    std::cout << "COOOOOOOOOOOMP: " << comparison << std::endl;
 
     return ;
 }
