@@ -11,6 +11,7 @@
 class PmergeMe {
     private:
             int comparison;
+            std::vector<int> _temp_pend;
     public:
         PmergeMe();
         ~PmergeMe();
@@ -21,7 +22,7 @@ class PmergeMe {
         int getComparison();
 
         template <typename T>
-        void create_temp_pend(T &temp_pend, int level, int jacob,int shit,int flag, T &_temp_pend)
+        void create_temp_pend(T &temp_pend, int level, int jacob,int shit,int flag)
         {
             _temp_pend.clear();
             int i = 2;
@@ -66,11 +67,11 @@ class PmergeMe {
             end -= move_end;
         }
         
-        for (auto it = container.begin(); it != end; it = std::next(it, 2 * _level))
+        for (auto it = container.begin(); it != end; it += (2 * _level))
         {
-            if (*std::next(it, _level - 1) > *std::next(it, _level * 2 - 1))
+            if (*(it + _level -1) > *(it + _level * 2 - 1))
             {
-                auto first = std::next(it, _level - 1);
+                auto first = (it + _level -1);
                 for(int i = _level; i != 0; i--){
                 std::iter_swap(first, next(first, _level));
                 first--;
@@ -79,23 +80,23 @@ class PmergeMe {
             comparison++;
         }  
         start(container, _level * 2); // recursio with increased level
-        T main, pend, extra, _temp_pend;
+        T main, pend, extra;
         //Put b1 and a1 to main
-        main.insert(main.begin(), container.begin(), std::next(container.begin(),_level *2));
+        main.insert(main.begin(), container.begin(), container.begin() + _level *2);
         unsigned long i = 2; 
         // Adding pend and main
         while(i < container.size() / _level)
         {
             unsigned long start_position = _level * i;
             if (i % 2 == 1)
-                main.insert(main.end(), std::next(container.begin(),start_position), std::next(container.begin(),start_position + _level));
+                main.insert(main.end(), container.begin() + start_position, container.begin() + start_position + _level);
             else
-                pend.insert(pend.end(), std::next(container.begin(),start_position), std::next(container.begin(),start_position + _level));
+                pend.insert(pend.end(), container.begin() + start_position, container.begin() + start_position + _level);
             i++;
         }
         // Making extra
         if ((i * _level) <= container.size())
-            extra.insert(extra.begin(), std::next(container.begin(),i * _level), container.end());
+            extra.insert(extra.begin(), container.begin() + i * _level, container.end());
         // ---------------Jacob-------------------
         if (pend.size() > 0){
         int aa = 0;
@@ -113,12 +114,11 @@ class PmergeMe {
                 while (pend.size())
                 {
                     auto pend_position2 = pend.end();
-                    pend_position2 = std::prev(pend_position2,1);
-                    create_temp_pend(main,_level,jacobs_num+stored_pends,(main.size() - tit+shit+odd),1, _temp_pend);
+                    pend_position2--;
+                    create_temp_pend(main,_level,jacobs_num+stored_pends,(main.size() - tit+shit+odd),1);
                     auto main_insert_position2 = std::upper_bound(_temp_pend.begin(),_temp_pend.end(),*pend_position2,[&](int a, int b) {comparison++; return a < b; });
                     if (main_insert_position2 == _temp_pend.end()){
-                        main_insert_position2 = std::next(main.begin(),_temp_pend.size()*_level);
-                    }
+                        main_insert_position2 = main.begin()+(_temp_pend.size()*_level);}
                     else{
                         main_insert_position2 = find_insert_position(main, *main_insert_position2);
                     if (main_insert_position2 != main.end() && main_insert_position2 != main.begin())
@@ -126,10 +126,10 @@ class PmergeMe {
                         if (std::distance(main.begin(),main_insert_position2) < _level-1)
                             main_insert_position2 = main.begin();
                         else
-                            main_insert_position2 = std::prev(main_insert_position2,_level-1);
+                            main_insert_position2 -= _level-1;
                     }}
-                    main.insert(main_insert_position2, std::prev(pend.end(),_level), pend.end());
-                    pend.erase(std::prev(pend.end(),_level),pend.end());
+                    main.insert(main_insert_position2, pend.end()-_level, pend.end());
+                    pend.erase(pend.end()-_level,pend.end());
                     shit--;
                 }
                 break;
@@ -139,29 +139,26 @@ class PmergeMe {
                 if (number_of_pends * _level -1 > (int)pend.size())
                     break;
                 auto pend_position = pend.begin();
-                pend_position = std::next(pend_position, number_of_pends * _level -1);
+                pend_position += number_of_pends * _level -1;
                 //Find the correct position in main where to insert
                 // Upper bound uses custom comparator
-                create_temp_pend(main,_level,jacobs_num+stored_pends,shit,0, _temp_pend);
+                create_temp_pend(main,_level,jacobs_num+stored_pends,shit,0);
                 if (jacobs_num*_level+aa > (int)main.size()){
                     break;}
                 auto main_insert_position = std::upper_bound(_temp_pend.begin(),_temp_pend.end(),*pend_position,[&](int a, int b) { comparison++; return a < b; });
-                if (main_insert_position == _temp_pend.end())
-                {
-                    main_insert_position = std::next(main.begin(),_temp_pend.size()*_level);
+                if (main_insert_position == _temp_pend.end()){
+                    main_insert_position = main.begin()+(_temp_pend.size()*_level);
                 }
                 else{
                     main_insert_position = find_insert_position(main, *main_insert_position);
-                if (main_insert_position != std::prev(_temp_pend.end(),1) && main_insert_position != main.begin()){ //main_insert_position != main.begin()+(jacobs_num*_level+aa)
+                if (main_insert_position != _temp_pend.end()-1 && main_insert_position != main.begin()){ //main_insert_position != main.begin()+(jacobs_num*_level+aa)
                     if (std::distance(main.begin(),main_insert_position) < _level-1)
                         main_insert_position = main.begin();
                     else
-                        main_insert_position = std::prev(main_insert_position,_level-1);
-                    }
-                }
-                main.insert(main_insert_position, std::prev(pend_position,_level - 1), std::next(pend_position,1));
-                auto erase_start = std::prev(pend_position,_level - 1);
-                auto erase_end = std::next(pend_position,1);
+                        main_insert_position -= _level-1;}}
+                main.insert(main_insert_position, pend_position - _level + 1, pend_position + 1);
+                auto erase_start = pend_position - _level + 1;
+                auto erase_end = pend_position + 1;
                 pend.erase(erase_start, erase_end);
                 number_of_pends--;
             }

@@ -1,4 +1,4 @@
-#include "PmergeMe.hpp"
+#include "PmergeMe2.hpp"
 
 PmergeMe::PmergeMe() {
     comparison = 0;
@@ -31,18 +31,18 @@ void PmergeMe::create_temp_pend(std::vector<int> &temp_pend, int level, int jaco
     int i = 2;
     if (level == 1 && flag == 1){
         _temp_pend.insert(_temp_pend.begin(), temp_pend.begin(), temp_pend.begin()  + shit);
-          std::cout << "Created temp main"  << std::endl;
-         for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
-        std::cout << *it << " ";
-    }
+        //   std::cout << "Created temp main"  << std::endl;
+        //  for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
+        // std::cout << *it << " ";
+    // }
         return ;
     }
     if (level == 1 && flag == 0){
         //_temp_pend = temp_pend;
         _temp_pend.insert(_temp_pend.begin(), temp_pend.begin(), temp_pend.begin() + jacob);
-          std::cout << "Created temp main"  << std::endl;
-         for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
-        std::cout << *it << " ";}
+        //   std::cout << "Created temp main"  << std::endl;
+        //  for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
+        // std::cout << *it << " ";}
         return ;
     }
     for (auto it = temp_pend.begin(); it != temp_pend.end(); it++){
@@ -52,10 +52,10 @@ void PmergeMe::create_temp_pend(std::vector<int> &temp_pend, int level, int jaco
         if ((int)_temp_pend.size() == jacob)
             break;
     }
-    std::cout << "Created temp main"  << std::endl;
-    for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
-        std::cout << *it << " ";
-    }
+    // std::cout << "Created temp main"  << std::endl;
+    // for (auto it = _temp_pend.begin(); it != _temp_pend.end(); it++){
+    //     std::cout << *it << " ";
+    // }
     std::cout << std::endl;
 }
 
@@ -99,7 +99,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     std::cout << std::endl;
     start(container, _level * 2); // recursio with increased level
     std::vector<int> main, pend, extra;
-    std::cout << "Making main" << std::endl;
+    // std::cout << "Making main" << std::endl;
     //Put b1 and a1 to main
 
     main.insert(main.begin(), container.begin(), container.begin() + _level *2);
@@ -118,14 +118,14 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     if ((i * _level) <= container.size())
         extra.insert(extra.begin(), container.begin() + i * _level, container.end());
     
-     std::cout << "-----------------LEVEL: -----------" << _level << " : ";
-    for (auto it = container.begin(); it != container.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
-    std::cout << "MAIN: " << _level << " : ";
-    for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
-    std::cout << "PEND: " << _level << " : ";
-    for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
-    std::cout << "EXTRA: " << _level << " : ";
-    for (auto it = extra.begin(); it != extra.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    //  std::cout << "-----------------LEVEL: -----------" << _level << " : ";
+    // for (auto it = container.begin(); it != container.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    // std::cout << "MAIN: " << _level << " : ";
+    // for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    // std::cout << "PEND: " << _level << " : ";
+    // for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    // std::cout << "EXTRA: " << _level << " : ";
+    // for (auto it = extra.begin(); it != extra.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
 
     // ---------------Jacob-------------------
     if (pend.size() > 0){
@@ -158,7 +158,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
                     else
                         main_insert_position2 -= _level-1;
                 }}
-                 std::cout << "Leftovers: pend number is: " << *pend_position2 << " main insert position: " << *main_insert_position2 << std::endl;
+                //std::cout << "Leftovers: pend number is: " << *pend_position2 << " main insert position: " << *main_insert_position2 << std::endl;
                 main.insert(main_insert_position2, pend.end()-_level, pend.end());
                 pend.erase(pend.end()-_level,pend.end());
                 //if (_level == 1)
@@ -175,42 +175,42 @@ void PmergeMe::start(std::vector<int> &container, int _level){
             pend_position += number_of_pends * _level -1;
             //Find the correct position in main where to insert
             // Upper bound uses custom comparator
-            std::cout << "ASDA" << stored_pends << std::endl;
+            // std::cout << "ASDA" << stored_pends << std::endl;
             create_temp_pend(main,_level,jacobs_num+stored_pends,shit,0);
-            std::cout << " pend number is: " << *pend_position << " Main END: " << *(main.begin()+(jacobs_num*_level+aa)) << " Jacobs number: " << jacobs_num*_level+aa <<std::endl;
+            // std::cout << " pend number is: " << *pend_position << " Main END: " << *(main.begin()+(jacobs_num*_level+aa)) << " Jacobs number: " << jacobs_num*_level+aa <<std::endl;
             if (jacobs_num*_level+aa > (int)main.size()){
-                std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
+                // std::cout << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << std::endl;
                 break;}
             auto main_insert_position = std::upper_bound(_temp_pend.begin(),_temp_pend.end(),*pend_position,[&](int a, int b) { comparison++; return a < b; });
-            std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
+            //std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
             if (main_insert_position == _temp_pend.end()){
                 main_insert_position = main.begin()+(_temp_pend.size()*_level);
                 //stored_pends--;
-                std::cout << "AAAAAAAAAAAAAAA"  << std::endl;
+                // std::cout << "AAAAAAAAAAAAAAA"  << std::endl;
             }
             else{
                 main_insert_position = find_insert_position(main, *main_insert_position);
-            std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
+            // std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
             if (main_insert_position != _temp_pend.end()-1 && main_insert_position != main.begin()){ //main_insert_position != main.begin()+(jacobs_num*_level+aa)
                 if (std::distance(main.begin(),main_insert_position) < _level-1)
                     main_insert_position = main.begin();
                 else
                     main_insert_position -= _level-1;}}
-            std::cout << "Jacob nummber: " << jacobs_num << " pend number is: " << *pend_position 
-            << " main insert position: " << *(main_insert_position)<< std::endl;
+            // std::cout << "Jacob nummber: " << jacobs_num << " pend number is: " << *pend_position 
+            // << " main insert position: " << *(main_insert_position)<< std::endl;
             main.insert(main_insert_position, pend_position - _level + 1, pend_position + 1);
             auto erase_start = pend_position - _level + 1;
             auto erase_end = pend_position + 1;
             pend.erase(erase_start, erase_end);
-            std::cout << "Pending to main" << std::endl;
+            // std::cout << "Pending to main" << std::endl;
 
             number_of_pends--;
             //previous_jacobs_num = jacobs_num;
-            std::cout << "MAIN: " << _level << " : ";
-            for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
-            std::cout << "PEND: " << _level << " : ";
-            for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";    
-        }
+        //     std::cout << "MAIN: " << _level << " : ";
+        //     for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+        //     std::cout << "PEND: " << _level << " : ";
+        //     for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";    
+         }
         stored_pends += jacobs_num - previous_jacobs_num;
         previous_jacobs_num = jacobs_num;
         aa = jacobs_num - previous_jacobs_num * _level;
@@ -220,8 +220,8 @@ void PmergeMe::start(std::vector<int> &container, int _level){
     std::cout << "After Jacobs magic" << std::endl;
     std::cout << "MAIN: " << _level << " : ";
     for (auto it = main.begin(); it != main.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
-    std::cout << "PEND: " << _level << " : ";
-    for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
+    // std::cout << "PEND: " << _level << " : ";
+    // for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";
 
     container = main;
     std::cout << "COOOOOOOOOOOMP: " << comparison << std::endl;

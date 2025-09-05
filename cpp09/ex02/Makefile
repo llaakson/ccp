@@ -2,7 +2,7 @@ CXX=c++
 CFLAGS=-Wall -Wextra -Werror -std=c++20 -O2
 #-fsanitize=address,undefined -g
 NAME=PmergeMe
-SRCS=main.cpp PmergeMe.cpp
+SRCS=main.cpp PmergeMe2.cpp
 HEADER=PmergeMe.hpp
 OBJS=$(SRCS:%.cpp=objs/%.o)
 
