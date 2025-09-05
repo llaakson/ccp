@@ -185,14 +185,13 @@ void PmergeMe::start(std::vector<int> &container, int _level){
             std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
             if (main_insert_position == _temp_pend.end()){
                 main_insert_position = main.begin()+(_temp_pend.size()*_level);
-                //main_insert_position -= _level-1;
-                stored_pends--;
+                //stored_pends--;
                 std::cout << "AAAAAAAAAAAAAAA"  << std::endl;
             }
             else{
                 main_insert_position = find_insert_position(main, *main_insert_position);
             std::cout << "Upper bound returned: " << *main_insert_position << std::endl;
-            if (main_insert_position != main.begin()+(jacobs_num*_level+aa) && main_insert_position != main.begin()){ //might need aa
+            if (main_insert_position != _temp_pend.end()-1 && main_insert_position != main.begin()){ //main_insert_position != main.begin()+(jacobs_num*_level+aa)
                 if (std::distance(main.begin(),main_insert_position) < _level-1)
                     main_insert_position = main.begin();
                 else
@@ -212,7 +211,7 @@ void PmergeMe::start(std::vector<int> &container, int _level){
             std::cout << "PEND: " << _level << " : ";
             for (auto it = pend.begin(); it != pend.end(); ++it){std::cout << *it << " ";}std::cout << "\n";    
         }
-        stored_pends = jacobs_num - previous_jacobs_num;
+        stored_pends += jacobs_num - previous_jacobs_num;
         previous_jacobs_num = jacobs_num;
         aa = jacobs_num - previous_jacobs_num * _level;
     }}
