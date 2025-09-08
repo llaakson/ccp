@@ -1,13 +1,12 @@
-#ifndef POLISH_HPP
-#define POLISH_HPP
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <string>
 #include <iostream>
-#include <iterator>
 #include <stack>
 #include <sstream>
-#include <cctype>
-#include <cstdlib>
+#include <limits>
+#include <exception>
 
 class Polish {
     private:
@@ -19,7 +18,6 @@ class Polish {
         Polish(const Polish &copy);
         Polish& operator=(const Polish &rhs); 
 
-        ///void calculate_rpn();
         void calculate_instance(int n1, int n2, char op);
 
 };

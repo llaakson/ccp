@@ -1,6 +1,6 @@
 NAME = RPN
 
-SOURCES =	main.cpp Polish.cpp \
+SOURCES =	main.cpp RPN.cpp \
 
 OBJECTS = $(SOURCES:%.cpp=%.o)
 
