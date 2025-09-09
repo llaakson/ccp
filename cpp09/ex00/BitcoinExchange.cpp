@@ -34,8 +34,9 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) {
 }
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs){
-	if (this != &rhs)
-		return *this;;
+	if (this != &rhs){
+		_data_map = rhs._data_map;
+	}
 	return *this;
 	
 }
@@ -54,7 +55,7 @@ void BitcoinExchange::validate_date(std::string date){
 	if (date[4] != '-' || date[7] != '-')
 		throw std::runtime_error("Error! Invalid Syntax: date");
 
-	for (int i = 0; i < 10;i++){
+	for (int i = 0; i < 10 ; i++){
 		if (i == 4 || i == 7)
 			continue;
 		if (!std::isdigit(date[i]))
@@ -79,7 +80,7 @@ void BitcoinExchange::validate_date(std::string date){
 bool BitcoinExchange::validate_date_input(std::string &date)
 {
     //std::cout  <<"|" << date << "|" << std::endl;
-	if (date.size() != 13 && date[11] != ' ' && date[12] != '|' && date[13] != ' ')
+	if (date.size() != 13 || date[10] != ' ' || date[11] != '|' || date[12] != ' ')
         return false;
 
     date = date.substr(0,10);
@@ -87,7 +88,8 @@ bool BitcoinExchange::validate_date_input(std::string &date)
 	if (date[4] != '-' || date[7] != '-')
 		return false;
 
-	for (int i = 0; i < 10;i++){
+	for (int i = 0; i < 10; i++)
+	{
 		if (i == 4 || i == 7)
 			continue;
 		if (!std::isdigit(date[i]))
@@ -109,23 +111,22 @@ bool BitcoinExchange::validate_date_input(std::string &date)
     return true;
 }
 
-void BitcoinExchange::print_conversion_rate(std::string date, double bitcoins)
+void BitcoinExchange::print_conversion_rate(std::string date, float bitcoins, std::string one_line)
 {
     date.erase(std::remove(date.begin(), date.end(), ' '), date.end());
-    // double rate = 0;
-
-    // for (auto it = _data_map.begin(); it != _data_map.end(); it++)
-    // {
-    //     //std::cout << it->first << " " << date << std::endl;
-	// 	if (it->first == date){
-    //         std::cout << "Found match" << std::endl;
-    //         rate = it->second;
-    //         break;
-    //     }
-    // }
     auto it = _data_map.lower_bound(date);
-
-	std::cout << date << " => " << std::setprecision(9) << bitcoins << " = " << std::setprecision(9) << bitcoins * it->second << std::endl;
+	if (it == _data_map.end() || date != it->first)
+	{
+		if (it == _data_map.begin())
+		{
+			std::cerr << "Error: bad input => " << one_line << std::endl;
+			return ;
+		}
+		else
+			it--;
+	}
+	//std::cout  << "rate is: " << it->second << "date is: " << it->first << std::endl;; 
+	std::cout << date << " => " << std::setprecision(2) << bitcoins << " = " << std::setprecision(2) << bitcoins * it->second << std::endl;
 }
 
 void BitcoinExchange::Converter(char **argv){
@@ -133,12 +134,12 @@ void BitcoinExchange::Converter(char **argv){
     std::string one_line = "";
 	std::string rate = "";
 	std::string date = "";
-    double int_rate = 0;
+    float int_rate = 0;
 
 	input.open(argv[1]);
     if (!input.is_open())
     {
-        throw std::runtime_error("Error! Could not open input.txt");
+        throw std::runtime_error("Error: Could not open file");
     }
 
     std::getline(input,date);
@@ -150,7 +151,7 @@ void BitcoinExchange::Converter(char **argv){
 	    bool validate_date = validate_date_input(date);
         if (!validate_date)
         {
-            std::cerr << "Error bad input => " << one_line << std::endl; 
+            std::cerr << "Error: bad input => " << one_line << std::endl; 
             continue;
         }
 		rate = one_line.substr(13,std::string::npos);
@@ -160,20 +161,29 @@ void BitcoinExchange::Converter(char **argv){
             std::cerr << "Error: not a positive number" << std::endl; 
             continue;
         }
-        if (rate.find_first_not_of("01234567898.") != std::string::npos)
+        if (rate.find_first_not_of("0123456789.") != std::string::npos)
         {
-            std::cerr << "Error bad input => " << one_line << std::endl; 
+            std::cerr << "Error: bad input => " << one_line << std::endl; 
             continue;
         }
-        int_rate = std::stod(rate);
+		auto count = std::ranges::count(one_line, '.');
+		if (count > 1)
+		{
+			std::cerr << "Error: bad input => " << one_line << std::endl; 
+            continue;
+		}
+		try{
+        	int_rate = std::stod(rate);
+		}
+		catch (...){
+			std::cerr << "Error: bad input => " << one_line << std::endl;
+		}
         if (int_rate > 1000)
         {
             std::cerr << "Error: too large number" << std::endl; 
             continue;   
         }
-        print_conversion_rate(date,int_rate);
-		
-
+        print_conversion_rate(date,int_rate,one_line);
 		//std::cout << "'" << date << " ' '" << int_rate << "'" << std::endl;
 	}
 }

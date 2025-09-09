@@ -12,8 +12,7 @@
 
 class BitcoinExchange {
 	private:
-		std::map<std::string, double>_data_map;
-		//int _amount;
+		std::map<std::string, float>_data_map;
 	public:
 		BitcoinExchange();
 		~BitcoinExchange();
@@ -21,7 +20,7 @@ class BitcoinExchange {
 		BitcoinExchange& operator=(const BitcoinExchange &rhs);
 
 		void Converter(char **argv);
-		void print_conversion_rate(std::string date, double bitcoins);
+		void print_conversion_rate(std::string date, float bitcoins, std::string one_line);
 		void validate_date(std::string date);
 		void validate_header(std::string date);
 		bool validate_date_input(std::string &date);

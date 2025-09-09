@@ -13,13 +13,12 @@ int main(int argc,char **argv)
 	}
 	catch (const std::invalid_argument& e) 
 	{
-        std::cout << "Invalid argument exception: " << e.what() << std::endl;
+        std::cout << "Invalid argument exception: " << e.what() << " !Exchange rate not valid" << std::endl;
     }
 	catch (const std::out_of_range& e) 
 	{
-        std::cout << "Out of range exception: " << e.what() << std::endl;
+        std::cout << "Out of range exception: " << e.what() << " !Exchange rate not valid" << std::endl;
     }
-
 	catch (std::exception &e)
     {
         std::cerr << e.what() << std::endl;

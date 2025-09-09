@@ -8,18 +8,17 @@
 #include <limits>
 #include <exception>
 
-class Polish {
+class RPN {
     private:
         std::stack<int> _stack;
     public:
-        Polish();
-        Polish(const std::string &argv);
-        ~Polish();
-        Polish(const Polish &copy);
-        Polish& operator=(const Polish &rhs); 
+        RPN();
+        RPN(const std::string &argv);
+        ~RPN();
+        RPN(const RPN &copy);
+        RPN& operator=(const RPN &rhs); 
 
         void calculate_instance(int n1, int n2, char op);
-
 };
 
 #endif

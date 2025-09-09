@@ -1,13 +1,12 @@
 #include "RPN.hpp" 
 
-
 int main(int argc,char **argv)
 {
     if (argc != 2){
-       std::cerr << "Error! Give one argument example: ./RPN '42 42 +'" << std::endl; return 1;} 
+       std::cerr << "Error! Give one argument example: ./RPN '4 2 +'" << std::endl; return 1;} 
     try
     {
-        Polish Rpn(argv[1]);
+        RPN RPN_one(argv[1]);
     }
     catch (std::exception &e)
     {

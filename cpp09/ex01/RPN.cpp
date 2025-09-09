@@ -1,20 +1,20 @@
 #include "RPN.hpp"
 
-Polish::Polish(){}
+RPN::RPN(){}
 
-Polish::~Polish(){}
+RPN::~RPN(){}
 
-Polish::Polish(const Polish &copy){ 
+RPN::RPN(const RPN &copy){ 
     *this = copy;
 }
 
-Polish& Polish::operator=(const Polish &rhs){
+RPN& RPN::operator=(const RPN &rhs){
     if (this != &rhs)
         _stack = rhs._stack;
     return *this;
 }
 
-void Polish::calculate_instance(int n1, int n2, char op)
+void RPN::calculate_instance(int n1, int n2, char op)
 {
     long long temp_result = 0;
     if (op == '+')
@@ -49,14 +49,14 @@ void Polish::calculate_instance(int n1, int n2, char op)
     }
 }
 
-Polish::Polish(const std::string &argv)
+RPN::RPN(const std::string &argv)
 {
     std::stringstream input(argv);
     std::string number;
 
     if (argv.size() < 5)
         throw std::runtime_error("Error! Not a valid operation");
-    if (argv.find_first_not_of("+-/*01234567898 ") != std::string::npos)
+    if (argv.find_first_not_of("+-/*0123456798 ") != std::string::npos)
         throw std::runtime_error("Error! Invalid characters use only: '+/-*0123456789 '");
 
     while (std::getline(input,number, ' '))
