@@ -6,7 +6,7 @@ int main(int argc,char **argv)
        std::cerr << "Error! Give one argument example: ./RPN '4 2 +'" << std::endl; return 1;} 
     try
     {
-        RPN RPN_one(argv[1]);
+        RPN RPN_one(argv[1]);z
     }
     catch (std::exception &e)
     {

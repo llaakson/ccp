@@ -21,17 +21,11 @@ BitcoinExchange::BitcoinExchange()
         validate_date(date);
 		_data_map.insert({date,std::stod(rate)});
 	}
-	// for (auto it = _data_map.begin(); it != _data_map.end(); it++)
-    // {
-	//     std::cout << "'" << it->first << " ' '" << std::setprecision(9) << it->second << "'" << std::endl;
-	// }
 }
 
 BitcoinExchange::~BitcoinExchange(){}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) {
-	*this = copy;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) : _data_map(copy._data_map) {}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &rhs){
 	if (this != &rhs){
@@ -48,7 +42,6 @@ void BitcoinExchange::validate_header(std::string date)
 }
 
 void BitcoinExchange::validate_date(std::string date){
-	//std::cout  << date << std::endl;
 	if (date.size() != 10)
         throw std::runtime_error("Error! Invalid Syntax: date");
 
@@ -79,7 +72,6 @@ void BitcoinExchange::validate_date(std::string date){
 
 bool BitcoinExchange::validate_date_input(std::string &date)
 {
-    //std::cout  <<"|" << date << "|" << std::endl;
 	if (date.size() != 13 || date[10] != ' ' || date[11] != '|' || date[12] != ' ')
         return false;
 
@@ -125,8 +117,7 @@ void BitcoinExchange::print_conversion_rate(std::string date, float bitcoins, st
 		else
 			it--;
 	}
-	//std::cout  << "rate is: " << it->second << "date is: " << it->first << std::endl;; 
-	std::cout << date << " => " << std::setprecision(2) << bitcoins << " = " << std::setprecision(2) << bitcoins * it->second << std::endl;
+	std::cout << date << " => " << bitcoins << " = " << bitcoins * it->second << std::endl;
 }
 
 void BitcoinExchange::Converter(char **argv){
@@ -184,6 +175,5 @@ void BitcoinExchange::Converter(char **argv){
             continue;   
         }
         print_conversion_rate(date,int_rate,one_line);
-		//std::cout << "'" << date << " ' '" << int_rate << "'" << std::endl;
 	}
 }

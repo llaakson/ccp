@@ -6,7 +6,7 @@
 #include <exception>
 #include <iterator>
 #include <map>
-#include <iomanip> // for test print can be deleed
+#include <iomanip>
 #include <string>
 #include <algorithm>
 
@@ -24,7 +24,6 @@ class BitcoinExchange {
 		void validate_date(std::string date);
 		void validate_header(std::string date);
 		bool validate_date_input(std::string &date);
-
 };
 
 #endif

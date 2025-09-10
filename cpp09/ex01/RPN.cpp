@@ -4,9 +4,7 @@ RPN::RPN(){}
 
 RPN::~RPN(){}
 
-RPN::RPN(const RPN &copy){ 
-    *this = copy;
-}
+RPN::RPN(const RPN &copy) : _stack(copy._stack) {}
 
 RPN& RPN::operator=(const RPN &rhs){
     if (this != &rhs)

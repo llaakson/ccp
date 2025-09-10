@@ -1,27 +1,27 @@
-CXX=c++
-CFLAGS=-Wall -Wextra -Werror -std=c++20 -O2
-#-fsanitize=address,undefined -g
-NAME=PmergeMe
-SRCS=main.cpp PmergeMe2.cpp
-HEADER=PmergeMe.hpp
-OBJS=$(SRCS:%.cpp=objs/%.o)
+
+NAME = PmergeMe
+
+SOURCES =	main.cpp PmergeMe.cpp \
+
+OBJECTS = $(SOURCES:%.cpp=%.o)
+
+CC	=	c++ 
+CFLAGS = -Wall -Werror -Wextra -std=c++20
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(HEADER)
-	$(CXX) $(CFLAGS) $(OBJS) -o $@
+%.o:	%.cpp
+	$(CC)	$(CFLAGS)	-c	$<	-o	$@
 
-objs/%.o: %.cpp $(HEADER)
-	@mkdir -p objs
-	$(CXX) $(CFLAGS) -c $< -o $@
-
-re: fclean
-	@$(MAKE) --no-print-directory
+$(NAME): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
 
 clean:
-	rm -rf objs
+	rm -f $(OBJECTS)
 
 fclean: clean
 	rm -f $(NAME)
+
+re: fclean all
 
 .PHONY: all clean fclean re
